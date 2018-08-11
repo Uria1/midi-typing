@@ -1,11 +1,11 @@
-package poc.src.test.scala.midityping
+package org.midityping.poc
 
 import javax.sound.midi._
 import org.specs2.mutable.SpecificationWithJUnit
 
 import scala.util.Try
 
-class PocTest extends SpecificationWithJUnit {
+class MidiTest extends SpecificationWithJUnit {
   "Midi" should {
 
     "work" in {
