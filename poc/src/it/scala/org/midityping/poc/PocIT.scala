@@ -1,9 +1,9 @@
-package org.midityping.poc
+package poc.src.it.scala.org.midityping.poc
 
-import org.specs2.mutable.SpecificationWithJUnit
 import org.midityping.poc.midi.MidiEventListener
+import org.specs2.mutable.SpecificationWithJUnit
 
-class E2ETest extends SpecificationWithJUnit {
+class PocIT extends SpecificationWithJUnit {
   "A Note" should {
     "trigger A key press" in {
       val device = new MidiTestDevice

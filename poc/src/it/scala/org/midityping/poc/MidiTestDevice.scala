@@ -1,4 +1,4 @@
-package org.midityping.poc
+package poc.src.it.scala.org.midityping.poc
 
 import javax.sound.midi.{MidiSystem, ShortMessage}
 
