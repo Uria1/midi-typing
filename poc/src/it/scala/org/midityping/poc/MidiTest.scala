@@ -1,4 +1,4 @@
-package org.midityping.poc
+package poc.src.it.scala.org.midityping.poc
 
 import javax.sound.midi._
 import org.specs2.mutable.SpecificationWithJUnit

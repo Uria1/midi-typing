@@ -25,3 +25,20 @@ scala_register_toolchains()
 
 load("@io_bazel_rules_scala//specs2:specs2_junit.bzl","specs2_junit_repositories")
 specs2_junit_repositories()
+
+maven_jar(
+    name = "com_fasterxml_jackson_core__jackson_databind",
+    artifact = "com.fasterxml.jackson.core:jackson-databind:2.9.6",
+)
+maven_jar(
+    name = "com_fasterxml_jackson_core__jackson_annotations",
+    artifact = "com.fasterxml.jackson.core:jackson-annotations:2.9.6",
+)
+maven_jar(
+    name = "com_fasterxml_jackson_core__jackson_core",
+    artifact = "com.fasterxml.jackson.core:jackson-core:2.9.6",
+)
+maven_jar(
+    name = "com_fasterxml_jackson_module__jackson_module_scala",
+    artifact = "com.fasterxml.jackson.module:jackson-module-scala_2.12:2.9.6",
+)
