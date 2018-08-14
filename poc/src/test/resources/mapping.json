@@ -1,3 +1,6 @@
 {
-
+  "MidiNoteOn:85": {
+    "actionType": "KeyPress",
+    "arg": "a"
+  }
 }

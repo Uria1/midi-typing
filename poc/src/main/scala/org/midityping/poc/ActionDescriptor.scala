@@ -1,6 +1,9 @@
 package org.midityping.poc
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import org.midityping.poc.ActionType.ActionType
 
-case class ActionDescriptor(@JsonProperty actionType: ActionType, @JsonProperty arg: String)
+case class ActionDescriptor(actionType: String, arg: String)
+
+object ActionDescriptor {
+  def apply(actionType: ActionType, arg: String): ActionDescriptor = new ActionDescriptor(actionType.toString, arg)
+}

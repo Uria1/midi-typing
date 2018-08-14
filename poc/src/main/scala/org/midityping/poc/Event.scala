@@ -1,5 +1,5 @@
 package org.midityping.poc
 
-trait Event
+import org.midityping.poc.EventType.EventType
 
-case class MidiEvent(note: Note) extends Event
+case class Event(eventType: EventType, channel: Int, note: Note)

@@ -1,7 +1,5 @@
 package org.midityping.poc
 
-import com.fasterxml.jackson.annotation.JsonProperty
-
-case class Mapping(@JsonProperty map: Map[EventDescriptor, ActionDescriptor]) {
+case class Mapping(map: scala.collection.Map[String, ActionDescriptor]) {
 
 }

@@ -1,13 +1,13 @@
 package poc.src.it.scala.org.midityping.poc
 
-import org.midityping.poc.midi.EventHandler
+import org.midityping.poc.{Event, EventHandler}
 
 import scala.collection.mutable.ListBuffer
 
 class TestEventHandler extends EventHandler {
-  val messages = ListBuffer.empty[String]
+  val messages = ListBuffer.empty[Event]
 
-  override def message(s: String): Unit = {
-    messages += s
+  override def message(event: Event): Unit = {
+    messages += event
   }
 }
