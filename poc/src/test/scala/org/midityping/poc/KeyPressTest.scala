@@ -9,12 +9,12 @@ import org.midityping.poc.system.{DefaultEventHandler, MidiTypingSystem}
 import org.specs2.mutable.SpecificationWithJUnit
 
 class KeyPressTest extends SpecificationWithJUnit {
-  "a" should {
-    "a note on should trigger key press" in {
+  "MidiTypingSystem" should {
+    "trigger a key press as a response for a note-on event" in {
       val mapper = new Mapper
       val eventListener = new MidiEventListener
       val actionFactory = new DefaultActionFactory
-      val actionExecutor = new TestActionExecutor
+      val actionExecutor = new ActionExecutorStub
       val eventHandler = new DefaultEventHandler(mapper, actionFactory, actionExecutor)
       val system = new MidiTypingSystem(eventListener, eventHandler, mapper, actionFactory, actionExecutor)
       system.loadMappingResource("/mapping.json")

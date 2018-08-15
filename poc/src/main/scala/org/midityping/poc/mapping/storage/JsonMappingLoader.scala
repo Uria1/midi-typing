@@ -1,6 +1,6 @@
-package org.midityping.poc.system
+package org.midityping.poc.mapping.storage
 
-import java.io.{BufferedReader, InputStreamReader, Reader}
+import java.io._
 import java.util
 
 import com.google.gson.GsonBuilder
@@ -11,6 +11,10 @@ import org.midityping.poc.mapping.Mapping
 import scala.collection.JavaConverters._
 
 object JsonMappingLoader {
+  def load(file: File): Mapping = {
+    load(new BufferedReader(new FileReader(file)))
+  }
+
   def load(resourceFilename: String): Mapping = {
     val resource = getClass.getResourceAsStream(resourceFilename)
     load(new BufferedReader(new InputStreamReader(resource)))

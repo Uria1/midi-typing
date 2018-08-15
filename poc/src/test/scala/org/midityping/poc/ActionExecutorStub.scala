@@ -2,7 +2,7 @@ package poc.src.test.scala.org.midityping.poc
 
 import org.midityping.poc.actions.{Action, ActionExecutor}
 
-class TestActionExecutor extends ActionExecutor {
+class ActionExecutorStub extends ActionExecutor {
   var lastAction: Option[Action] = None
 
   override def execute(action: Action): Unit = {

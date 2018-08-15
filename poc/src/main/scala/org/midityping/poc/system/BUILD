@@ -5,7 +5,7 @@ scala_library(
         "//poc/src/main/scala/org/midityping/poc/actions",
         "//poc/src/main/scala/org/midityping/poc/events",
         "//poc/src/main/scala/org/midityping/poc/mapping",
-        "@com_google_code_gson__gson//jar",
+        "//poc/src/main/scala/org/midityping/poc/mapping/storage",
     ],
     visibility = ["//visibility:public"]
 )
