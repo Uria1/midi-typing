@@ -13,7 +13,7 @@ class MidiTypingSystem(eventListener: EventListener,
   eventListener.subscribe(eventHandler)
 
   def loadMappingResource(resourcePath: String) = {
-    mapper.mapping = JsonMappingLoader.load(resourcePath)
+    mapper.appendMapping(JsonMappingLoader.load(resourcePath))
   }
 
 }

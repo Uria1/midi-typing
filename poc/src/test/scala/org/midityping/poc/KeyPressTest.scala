@@ -11,7 +11,7 @@ import org.specs2.mutable.SpecificationWithJUnit
 class KeyPressTest extends SpecificationWithJUnit {
   "a" should {
     "a note on should trigger key press" in {
-      val mapper = Mapper.empty
+      val mapper = new Mapper
       val eventListener = new MidiEventListener
       val actionFactory = new DefaultActionFactory
       val actionExecutor = new TestActionExecutor
@@ -20,7 +20,6 @@ class KeyPressTest extends SpecificationWithJUnit {
       system.loadMappingResource("/mapping.json")
       eventListener.sendEventToHandlers(Event(EventType.MidiNoteOn, 1, 127, Note.C4))
       actionExecutor.lastAction === Some(KeyPressAction("c"))
-
     }
   }
 }

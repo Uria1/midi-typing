@@ -15,4 +15,5 @@ object Note {
   }
 
   def C4 = Note(60)
+  def D4 = Note(62)
 }
