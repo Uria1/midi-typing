@@ -10,7 +10,7 @@ class DefaultEventHandler(mapper: Mapper, actionFactory: ActionFactory, actionEx
       case Some(descriptor) =>
         println(s"mapping: $event $descriptor")
         actionExecutor.execute(actionFactory.createAction(descriptor))
-      case None => println(s"no mapping: $event")
+      case None => //println(s"no mapping: $event")
     }
   }
 }

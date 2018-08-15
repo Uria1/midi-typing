@@ -9,7 +9,7 @@ class MidiReceiver(listener: MidiEventListener) extends Receiver {
     Try {
       message match {
         case sm: ShortMessage =>
-          println(s"message: ${sm.getCommand} ${sm.getData1} ${sm.getData2}")
+          //println(s"message: ${sm.getCommand} ${sm.getData1} ${sm.getData2}")
           listener.message(sm)
         case _ =>
       }
