@@ -19,11 +19,16 @@ class MidiEventListener extends EventListener {
   }
 
   def message(shortMessage: ShortMessage) = {
-    handler.foreach(_.message(Event(
+    sendEventToHandlers(Event(
       eventTypeFrom(shortMessage.getCommand),
       shortMessage.getChannel,
-      Note("c", shortMessage.getData1, shortMessage.getData2))
-    ))
+      shortMessage.getData2,
+      Note(shortMessage.getData1))
+    )
+  }
+
+  def sendEventToHandlers(event: Event): Unit = {
+    handler.foreach(_.message(event))
   }
 
   def start = {

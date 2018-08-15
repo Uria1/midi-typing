@@ -20,6 +20,6 @@ class PocIT extends SpecificationWithJUnit {
         })
         handler.messages.size mustEqual (999)
       }
-    }
+    }.pendingUntilFixed
   }
 }
