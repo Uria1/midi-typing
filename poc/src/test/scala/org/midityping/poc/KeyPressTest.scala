@@ -1,7 +1,11 @@
 package poc.src.test.scala.org.midityping.poc
 
-import org.midityping.poc._
+import org.midityping.poc.actions.{DefaultActionFactory, KeyPressAction}
+import org.midityping.poc.common.Note
+import org.midityping.poc.events.{Event, EventType}
+import org.midityping.poc.mapping.Mapper
 import org.midityping.poc.midi.MidiEventListener
+import org.midityping.poc.system.{DefaultEventHandler, JsonMappingLoader}
 import org.specs2.mutable.SpecificationWithJUnit
 
 class KeyPressTest extends SpecificationWithJUnit {

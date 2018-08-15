@@ -1,9 +1,8 @@
 scala_library(
-    name = "midi",
+    name = "events",
     srcs = glob(["*.scala"]),
     deps = [
         "//poc/src/main/scala/org/midityping/poc/common:common",
-        "//poc/src/main/scala/org/midityping/poc/events:events",
     ],
     visibility = ["//visibility:public"]
 )

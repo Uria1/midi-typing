@@ -1,6 +1,6 @@
-package org.midityping.poc
+package org.midityping.poc.actions
 
-import org.midityping.poc.ActionType.ActionType
+import org.midityping.poc.actions.ActionType.ActionType
 
 case class ActionDescriptor(actionType: String, arg: String)
 

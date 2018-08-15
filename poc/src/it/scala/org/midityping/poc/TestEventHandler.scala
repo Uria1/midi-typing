@@ -1,6 +1,6 @@
 package poc.src.it.scala.org.midityping.poc
 
-import org.midityping.poc.{Event, EventHandler}
+import org.midityping.poc.events.{Event, EventHandler}
 
 import scala.collection.mutable.ListBuffer
 

@@ -1,4 +1,4 @@
-package org.midityping.poc
+package org.midityping.poc.actions
 
 case class KeyPressAction(key: String) extends Action {
   override def execute: Unit = {

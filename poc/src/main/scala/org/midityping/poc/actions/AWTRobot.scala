@@ -1,4 +1,4 @@
-package org.midityping.poc
+package org.midityping.poc.actions
 
 import java.awt.Robot
 

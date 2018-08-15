@@ -1,4 +1,8 @@
-package org.midityping.poc
+package org.midityping.poc.mapping
+
+import org.midityping.poc.actions.ActionDescriptor
+import org.midityping.poc.common.Note
+import org.midityping.poc.events.{Event, EventDescriptor, EventType}
 
 class Mapper(mapping: Mapping) {
   def getActionDescriptorFor(event: Event): Option[ActionDescriptor] = {
@@ -8,5 +12,4 @@ class Mapper(mapping: Mapping) {
       }
     }
   }
-
 }

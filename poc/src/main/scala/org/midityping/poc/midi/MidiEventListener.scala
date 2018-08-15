@@ -1,8 +1,9 @@
 package org.midityping.poc.midi
 
 import javax.sound.midi.{MidiSystem, ShortMessage}
-import org.midityping.poc.EventType.EventType
-import org.midityping.poc._
+import org.midityping.poc.common.Note
+import org.midityping.poc.events.EventType.EventType
+import org.midityping.poc.events.{Event, EventHandler, EventListener, EventType}
 
 class MidiEventListener extends EventListener {
   var handler: Option[EventHandler] = None

@@ -1,6 +1,6 @@
-package org.midityping.poc
+package org.midityping.poc.events
 
-import org.midityping.poc.EventType.EventType
+import org.midityping.poc.events.EventType.EventType
 
 case class EventDescriptor(eventType: String, arg: String) {
   def asKey = {

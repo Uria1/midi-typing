@@ -1,4 +1,4 @@
-package org.midityping.poc
+package org.midityping.poc.common
 
 case class Note(name: String, octave: Int, number: Int)
 

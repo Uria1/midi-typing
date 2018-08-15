@@ -1,4 +1,4 @@
-package org.midityping.poc
+package org.midityping.poc.actions
 
 class DefaultActionFactory extends ActionFactory {
   override def createAction(descriptor: ActionDescriptor): Action = {

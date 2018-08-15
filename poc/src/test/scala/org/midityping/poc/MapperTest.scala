@@ -1,6 +1,10 @@
 package poc.src.test.scala.org.midityping.poc
 
-import org.midityping.poc._
+import org.midityping.poc.actions.{ActionDescriptor, ActionType}
+import org.midityping.poc.common.Note
+import org.midityping.poc.events.{Event, EventDescriptor, EventType}
+import org.midityping.poc.mapping.{Mapper, Mapping}
+import org.midityping.poc.system.JsonMappingLoader
 import org.specs2.mutable.SpecificationWithJUnit
 
 class MapperTest extends SpecificationWithJUnit {
