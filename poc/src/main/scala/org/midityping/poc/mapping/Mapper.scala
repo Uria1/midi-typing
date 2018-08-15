@@ -13,7 +13,7 @@ class Mapper() {
   def getActionDescriptorFor(event: Event): Option[ActionDescriptor] = {
     event match {
       case ev: Event =>
-        val key = EventDescriptor(EventType.MidiNoteOn, ev.note.fullName).asKey
+        val key = EventDescriptor(event.eventType, ev.note.fullName).asKey
         mappings.collectFirst { case mapping if mapping.map.contains(key) => mapping.map(key) }
     }
   }

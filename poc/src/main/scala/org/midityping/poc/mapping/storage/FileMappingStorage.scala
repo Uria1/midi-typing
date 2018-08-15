@@ -6,6 +6,6 @@ import org.midityping.poc.mapping.Mapping
 
 class FileMappingStorage(root: File) extends MappingStorage {
   override def load(): Seq[Mapping] = {
-    root.listFiles().filter(_.isFile).map(file => JsonMappingLoader.load(file))
+    root.listFiles().map(file => JsonMappingLoader.load(file))
   }
 }

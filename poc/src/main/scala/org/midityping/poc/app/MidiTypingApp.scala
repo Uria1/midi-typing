@@ -17,9 +17,11 @@ object MidiTypingApp {
     val eventHandler = new DefaultEventHandler(mapper, actionFactory, actionExecutor)
     val system = new MidiTypingSystem(eventListener, eventHandler, mapper, actionFactory, actionExecutor)
 
-    val storageDir = new File("~/midi-typing/mappings")
+    val storageDir = new File("midi-typing/mappings/")
     if (!storageDir.exists()) {
-      storageDir.mkdirs()
+      log("creating dir " + storageDir.getAbsolutePath)
+      val created = storageDir.mkdirs()
+      log(s"dir ${storageDir.getAbsolutePath} created? $created")
     }
     val mappingStorage = new FileMappingStorage(storageDir)
     mappingStorage.load().foreach(mapping => {
@@ -28,5 +30,9 @@ object MidiTypingApp {
 
     system.start
     Thread.sleep(600000)
+  }
+
+  def log(s: String) = {
+    println(s)
   }
 }

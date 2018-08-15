@@ -10,5 +10,5 @@ scala_binary(
         "//poc/src/main/scala/org/midityping/poc/common",
         "//poc/src/main/scala/org/midityping/poc/events",
     ],
-    main_class = "MidiTypingApp"
+    main_class = "org.midityping.poc.app.MidiTypingApp"
 )

@@ -8,8 +8,9 @@ class DefaultEventHandler(mapper: Mapper, actionFactory: ActionFactory, actionEx
   override def message(event: Event): Unit = {
     mapper.getActionDescriptorFor(event) match {
       case Some(descriptor) =>
+        println(s"mapping: $event $descriptor")
         actionExecutor.execute(actionFactory.createAction(descriptor))
-      case None =>
+      case None => println(s"no mapping: $event")
     }
   }
 }
