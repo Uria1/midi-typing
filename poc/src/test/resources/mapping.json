@@ -1,6 +1,6 @@
 {
-  "MidiNoteOn:60": {
+  "MidiNoteOn:C4": {
     "actionType": "KeyPress",
-    "arg": "a"
+    "arg": "c"
   }
 }

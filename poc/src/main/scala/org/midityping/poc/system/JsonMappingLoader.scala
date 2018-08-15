@@ -10,12 +10,11 @@ import org.midityping.poc.mapping.Mapping
 
 import scala.collection.JavaConverters._
 
-class JsonMappingLoader {
+object JsonMappingLoader {
   def load(resourceFilename: String): Mapping = {
     val resource = getClass.getResourceAsStream(resourceFilename)
     load(new BufferedReader(new InputStreamReader(resource)))
   }
-
 
   private def load(reader: Reader): Mapping = {
     val gson = new GsonBuilder().create

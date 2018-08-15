@@ -6,10 +6,10 @@ import org.midityping.poc.events.EventType.EventType
 import org.midityping.poc.events.{Event, EventHandler, EventListener, EventType}
 
 class MidiEventListener extends EventListener {
-  var handler: Option[EventHandler] = None
+  var handlers: Seq[EventHandler] = Seq.empty
 
   def subscribe(eventHandler: EventHandler) = {
-    handler = Some(eventHandler)
+    handlers = handlers :+ eventHandler
   }
 
   def eventTypeFrom(command: Int): EventType = {
@@ -29,7 +29,7 @@ class MidiEventListener extends EventListener {
   }
 
   def sendEventToHandlers(event: Event): Unit = {
-    handler.foreach(_.message(event))
+    handlers.foreach(_.message(event))
   }
 
   def start = {
