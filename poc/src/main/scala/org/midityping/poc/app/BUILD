@@ -12,8 +12,8 @@ scala_binary(
         "//poc/src/main/scala/org/midityping/poc/logging",
         "//poc/src/main/resources:runtime-deps",
         "@org_slf4j__slf4j_api//jar",
-        "@org_slf4j__slf4j_log4j12//jar",
-        "@log4j__log4j//jar",
+        "@ch_qos_logback__logback_classic//jar",
+        "@ch_qos_logback__logback_core//jar",
     ],
     main_class = "org.midityping.poc.app.MidiTypingApp"
 )
