@@ -30,3 +30,18 @@ maven_jar(
     name = "com_google_code_gson__gson",
     artifact = "com.google.code.gson:gson:2.8.5",
 )
+
+maven_jar(
+    name = "org_slf4j__slf4j_api",
+    artifact = "org.slf4j:slf4j-api:1.7.25",
+)
+
+maven_jar(
+    name = "org_slf4j__slf4j_log4j12",
+    artifact = "org.slf4j:slf4j-log4j12:1.7.25",
+)
+
+maven_jar(
+    name = "log4j__log4j",
+    artifact = "log4j:log4j:1.2.17",
+)
