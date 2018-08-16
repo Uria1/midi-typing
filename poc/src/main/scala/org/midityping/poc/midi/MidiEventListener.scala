@@ -25,12 +25,18 @@ class MidiEventListener extends EventListener {
   }
 
   def message(shortMessage: ShortMessage) = {
-    sendEventToHandlers(Event(
-      eventTypeFrom(shortMessage.getCommand),
-      shortMessage.getChannel,
-      shortMessage.getData2,
-      Note(shortMessage.getData1))
-    )
+    val eventType = eventTypeFrom(shortMessage.getCommand)
+    eventType match {
+      case EventType.MidiNoteOn =>
+        sendEventToHandlers(Event(
+          eventTypeFrom(shortMessage.getCommand),
+          shortMessage.getChannel,
+          shortMessage.getData2,
+          Note(shortMessage.getData1))
+        )
+      case _ =>
+        logger.trace(s"ignored midi event ${shortMessage.getCommand} ($eventType)")
+    }
   }
 
   def sendEventToHandlers(event: Event): Unit = {

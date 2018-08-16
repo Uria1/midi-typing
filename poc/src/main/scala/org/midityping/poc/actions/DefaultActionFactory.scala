@@ -9,7 +9,7 @@ class DefaultActionFactory extends ActionFactory {
     ActionType.withName(descriptor.actionType) match {
       case ActionType.KeyPress =>
         val action = KeyPressAction(descriptor.arg)
-        logger.debug(s"action: $action")
+        logger.trace(s"action: $action")
         action
     }
   }

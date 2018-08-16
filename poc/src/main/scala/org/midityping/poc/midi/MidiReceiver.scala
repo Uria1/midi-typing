@@ -12,7 +12,7 @@ class MidiReceiver(listener: MidiEventListener) extends Receiver {
     Try {
       message match {
         case sm: ShortMessage =>
-          logger.debug(s"message: ${sm.getCommand} ${sm.getData1} ${sm.getData2}")
+          logger.trace(s"message: ${sm.getCommand} ${sm.getData1} ${sm.getData2}")
           listener.message(sm)
         case _ =>
       }

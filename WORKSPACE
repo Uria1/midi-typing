@@ -37,11 +37,11 @@ maven_jar(
 )
 
 maven_jar(
-    name = "org_slf4j__slf4j_log4j12",
-    artifact = "org.slf4j:slf4j-log4j12:1.7.25",
+    name = "ch_qos_logback__logback_classic",
+    artifact = "ch.qos.logback:logback-classic:1.2.3",
 )
 
 maven_jar(
-    name = "log4j__log4j",
-    artifact = "log4j:log4j:1.2.17",
+    name = "ch_qos_logback__logback_core",
+    artifact = "ch.qos.logback:logback-core:1.2.3",
 )

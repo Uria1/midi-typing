@@ -4,9 +4,3 @@
     "arg": "c"
   }
 }
-
-{
-  eventType: "MidiNoteOn",
-  actionType: "KeyPress",
-  arguments: ["C3" : "C"]
-}
