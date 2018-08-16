@@ -27,23 +27,23 @@
     "actionType": "KeyPress",
     "arg": "G"
   },
-  "MidiNoteOn:A#3": {
+  "MidiNoteOn:A#4": {
     "actionType": "KeyPress",
     "arg": "H"
   },
-  "MidiNoteOn:C#3": {
+  "MidiNoteOn:C#4": {
     "actionType": "KeyPress",
     "arg": "I"
   },
-  "MidiNoteOn:D#3": {
+  "MidiNoteOn:D#4": {
     "actionType": "KeyPress",
     "arg": "J"
   },
-  "MidiNoteOn:F#3": {
+  "MidiNoteOn:F#4": {
     "actionType": "KeyPress",
     "arg": "K"
   },
-  "MidiNoteOn:G#3": {
+  "MidiNoteOn:G#4": {
     "actionType": "KeyPress",
     "arg": "L"
   },
@@ -102,5 +102,5 @@
   "MidiNoteOn:G#2": {
     "actionType": "KeyPress",
     "arg": "Z"
-  },
+  }
 }
