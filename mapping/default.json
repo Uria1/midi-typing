@@ -1,0 +1,106 @@
+{
+  "MidiNoteOn:A4": {
+    "actionType": "KeyPress",
+    "arg": "A"
+  },
+  "MidiNoteOn:B4": {
+    "actionType": "KeyPress",
+    "arg": "B"
+  },
+  "MidiNoteOn:C4": {
+    "actionType": "KeyPress",
+    "arg": "C"
+  },
+  "MidiNoteOn:D4": {
+    "actionType": "KeyPress",
+    "arg": "D"
+  },
+  "MidiNoteOn:E4": {
+    "actionType": "KeyPress",
+    "arg": "E"
+  },
+  "MidiNoteOn:F4": {
+    "actionType": "KeyPress",
+    "arg": "F"
+  },
+  "MidiNoteOn:G4": {
+    "actionType": "KeyPress",
+    "arg": "G"
+  },
+  "MidiNoteOn:A#3": {
+    "actionType": "KeyPress",
+    "arg": "H"
+  },
+  "MidiNoteOn:C#3": {
+    "actionType": "KeyPress",
+    "arg": "I"
+  },
+  "MidiNoteOn:D#3": {
+    "actionType": "KeyPress",
+    "arg": "J"
+  },
+  "MidiNoteOn:F#3": {
+    "actionType": "KeyPress",
+    "arg": "K"
+  },
+  "MidiNoteOn:G#3": {
+    "actionType": "KeyPress",
+    "arg": "L"
+  },
+  "MidiNoteOn:A3": {
+    "actionType": "KeyPress",
+    "arg": "M"
+  },
+  "MidiNoteOn:A#3": {
+    "actionType": "KeyPress",
+    "arg": "N"
+  },
+  "MidiNoteOn:B3": {
+    "actionType": "KeyPress",
+    "arg": "O"
+  },
+  "MidiNoteOn:C3": {
+    "actionType": "KeyPress",
+    "arg": "P"
+  },
+  "MidiNoteOn:C#3": {
+    "actionType": "KeyPress",
+    "arg": "Q"
+  },
+  "MidiNoteOn:D3": {
+    "actionType": "KeyPress",
+    "arg": "R"
+  },
+  "MidiNoteOn:D#3": {
+    "actionType": "KeyPress",
+    "arg": "S"
+  },
+  "MidiNoteOn:E3": {
+    "actionType": "KeyPress",
+    "arg": "T"
+  },
+  "MidiNoteOn:F3": {
+    "actionType": "KeyPress",
+    "arg": "U"
+  },
+  "MidiNoteOn:F#3": {
+    "actionType": "KeyPress",
+    "arg": "V"
+  },
+  "MidiNoteOn:G3": {
+    "actionType": "KeyPress",
+    "arg": "W"
+  },
+  "MidiNoteOn:G#3": {
+    "actionType": "KeyPress",
+    "arg": "X"
+  },
+  "MidiNoteOn:G2": {
+    "actionType": "KeyPress",
+    "arg": "Y"
+  },
+  "MidiNoteOn:G#2": {
+    "actionType": "KeyPress",
+    "arg": "Z"
+  },
+}
