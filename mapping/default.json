@@ -1,9 +1,9 @@
 {
-  "MidiNoteOn:A4": {
+  "MidiNoteOn:A3": {
     "actionType": "KeyPress",
     "arg": "A"
   },
-  "MidiNoteOn:B4": {
+  "MidiNoteOn:B3": {
     "actionType": "KeyPress",
     "arg": "B"
   },
@@ -27,7 +27,7 @@
     "actionType": "KeyPress",
     "arg": "G"
   },
-  "MidiNoteOn:A#4": {
+  "MidiNoteOn:A#3": {
     "actionType": "KeyPress",
     "arg": "H"
   },
@@ -47,15 +47,15 @@
     "actionType": "KeyPress",
     "arg": "L"
   },
-  "MidiNoteOn:A3": {
+  "MidiNoteOn:A2": {
     "actionType": "KeyPress",
     "arg": "M"
   },
-  "MidiNoteOn:A#3": {
+  "MidiNoteOn:A#2": {
     "actionType": "KeyPress",
     "arg": "N"
   },
-  "MidiNoteOn:B3": {
+  "MidiNoteOn:B2": {
     "actionType": "KeyPress",
     "arg": "O"
   },
