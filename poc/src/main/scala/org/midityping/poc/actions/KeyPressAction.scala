@@ -8,7 +8,7 @@ case class KeyPressAction(key: String) extends Action {
 
   override def execute: Unit = {
     val keyCode = AWTKeyMapper.mapKey(key)
-    logger.debug(s"key $key mapped to AWT code $keyCode")
+    logger.trace(s"key $key mapped to AWT code $keyCode")
     AWTRobot.robot.keyPress(keyCode)
     AWTRobot.robot.keyRelease(keyCode)
   }
