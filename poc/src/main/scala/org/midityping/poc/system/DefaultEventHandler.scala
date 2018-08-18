@@ -11,9 +11,11 @@ class DefaultEventHandler(mapper: Mapper, actionFactory: ActionFactory, actionEx
   override def message(event: Event): Unit = {
     mapper.getActionDescriptorFor(event) match {
       case Some(descriptor) =>
-        println(s"mapped event: $event -> $descriptor")
-        logger.info(s"mapped event: $event -> $descriptor")
-        actionExecutor.execute(actionFactory.createAction(descriptor))
+        if (event.velocity > 3) {
+          println(s"mapped event: $event -> $descriptor")
+          logger.info(s"mapped event: $event -> $descriptor")
+          actionExecutor.execute(actionFactory.createAction(descriptor))
+        } else logger.info(s"ignored: velocity = ${event.velocity}")
       case None => logger.info(s"not mapped: $event")
     }
   }
