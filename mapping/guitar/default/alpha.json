@@ -7,59 +7,59 @@
     "actionType": "KeyPress",
     "arg": "B"
   },
-  "MidiNoteOn:C4": {
+  "MidiNoteOn:C3": {
     "actionType": "KeyPress",
     "arg": "C"
   },
-  "MidiNoteOn:D4": {
+  "MidiNoteOn:D3": {
     "actionType": "KeyPress",
     "arg": "D"
   },
-  "MidiNoteOn:E4": {
+  "MidiNoteOn:E3": {
     "actionType": "KeyPress",
     "arg": "E"
   },
-  "MidiNoteOn:F4": {
+  "MidiNoteOn:F3": {
     "actionType": "KeyPress",
     "arg": "F"
   },
-  "MidiNoteOn:G4": {
+  "MidiNoteOn:G3": {
     "actionType": "KeyPress",
     "arg": "G"
   },
-  "MidiNoteOn:A#3": {
+  "MidiNoteOn:G4": {
     "actionType": "KeyPress",
     "arg": "H"
   },
-  "MidiNoteOn:C#4": {
+  "MidiNoteOn:C4": {
     "actionType": "KeyPress",
     "arg": "I"
   },
-  "MidiNoteOn:D#4": {
+  "MidiNoteOn:B2": {
     "actionType": "KeyPress",
     "arg": "J"
   },
-  "MidiNoteOn:F#4": {
+  "MidiNoteOn:D#3": {
     "actionType": "KeyPress",
     "arg": "K"
   },
-  "MidiNoteOn:G#4": {
+  "MidiNoteOn:E4": {
     "actionType": "KeyPress",
     "arg": "L"
   },
-  "MidiNoteOn:A2": {
+  "MidiNoteOn:F#4": {
     "actionType": "KeyPress",
     "arg": "M"
   },
-  "MidiNoteOn:A#2": {
+  "MidiNoteOn:A4": {
     "actionType": "KeyPress",
     "arg": "N"
   },
-  "MidiNoteOn:B2": {
+  "MidiNoteOn:B4": {
     "actionType": "KeyPress",
     "arg": "O"
   },
-  "MidiNoteOn:C3": {
+  "MidiNoteOn:C4": {
     "actionType": "KeyPress",
     "arg": "P"
   },
@@ -67,39 +67,39 @@
     "actionType": "KeyPress",
     "arg": "Q"
   },
-  "MidiNoteOn:D3": {
+  "MidiNoteOn:A3": {
     "actionType": "KeyPress",
     "arg": "R"
   },
-  "MidiNoteOn:D#3": {
+  "MidiNoteOn:F4": {
     "actionType": "KeyPress",
     "arg": "S"
   },
-  "MidiNoteOn:E3": {
+  "MidiNoteOn:G#3": {
     "actionType": "KeyPress",
     "arg": "T"
   },
-  "MidiNoteOn:F3": {
+  "MidiNoteOn:A#3": {
     "actionType": "KeyPress",
     "arg": "U"
   },
-  "MidiNoteOn:F#3": {
+  "MidiNoteOn:A#2": {
     "actionType": "KeyPress",
     "arg": "V"
   },
-  "MidiNoteOn:G3": {
+  "MidiNoteOn:D#4": {
     "actionType": "KeyPress",
     "arg": "W"
   },
-  "MidiNoteOn:G#3": {
+  "MidiNoteOn:F#3": {
     "actionType": "KeyPress",
     "arg": "X"
   },
-  "MidiNoteOn:G2": {
+  "MidiNoteOn:C#4": {
     "actionType": "KeyPress",
     "arg": "Y"
   },
-  "MidiNoteOn:G#2": {
+  "MidiNoteOn:G#4": {
     "actionType": "KeyPress",
     "arg": "Z"
   }
