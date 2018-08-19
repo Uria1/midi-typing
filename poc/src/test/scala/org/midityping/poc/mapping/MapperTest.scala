@@ -21,16 +21,26 @@ class MapperTest extends SpecificationWithJUnit with TestSupport {
       val mapper = Mapper.withMapping(mapC)
       mapper.getActionDescriptorFor(Strike(anEvent(Note.C4))) === Some(ActionDescriptor(ActionType.KeyPress, "c"))
     }
+
     "map NoteOn event to KeyPress action using mapping file" in {
       val mapper = Mapper.withMapping(JsonMappingLoader.load("/mapping.json"))
       mapper.getActionDescriptorFor(Strike(anEvent(Note.C4))) === Some(ActionDescriptor(ActionType.KeyPress, "c"))
     }
+
     "use multiple mappings" in {
       val mapper = new Mapper
       mapper.appendMapping(mapC)
       mapper.appendMapping(mapD)
       mapper.getActionDescriptorFor(Strike(anEvent(Note.C4))) === Some(ActionDescriptor(ActionType.KeyPress, "c"))
       mapper.getActionDescriptorFor(Strike(anEvent(Note.D4))) === Some(ActionDescriptor(ActionType.KeyPress, "d"))
+    }
+
+    "map strike with two events" in {
+      val mapper = Mapper.withMapping(mapC)
+
+      mapper.getActionDescriptorFor(
+        Strike(Seq(anEvent(Note.C4), anEvent(Note.F4)))
+      ) === Some(ActionDescriptor(ActionType.KeyPress, "x"))
     }
   }
 }
