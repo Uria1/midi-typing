@@ -11,12 +11,17 @@ trait TestSupport {
 
   def randomInt(from: Int, to: Int) = random.nextInt(to - from) + from
 
+  def randomLong = random.nextLong
+
   def randomVelocity = randomInt(0, 127)
 
-  def anEvent(note: Note,
+  def randomNote:Note = Note(randomInt(0,127))
+
+  def anEvent(note: Note = randomNote,
               eventType: EventType = EventType.MidiNoteOn,
+              timestamp: Long = randomLong,
               channel: Int = MidiChannel.default,
               velocity: Int = randomVelocity): Event = {
-    Event(eventType, channel, velocity, note)
+    Event(eventType, timestamp, channel, velocity, note)
   }
 }

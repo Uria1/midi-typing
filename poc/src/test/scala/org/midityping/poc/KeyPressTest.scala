@@ -18,7 +18,7 @@ class KeyPressTest extends SpecificationWithJUnit {
       val eventHandler = new DefaultEventHandler(mapper, actionFactory, actionExecutor)
       val system = new MidiTypingSystem(eventListener, eventHandler, mapper, actionFactory, actionExecutor)
       system.loadMappingResource("/mapping.json")
-      eventListener.sendEventToHandlers(Event(EventType.MidiNoteOn, 1, 127, Note.C4))
+      eventListener.sendEventToHandlers(Event(EventType.MidiNoteOn, 0, 1, 127, Note.C4))
       actionExecutor.lastAction === Some(KeyPressAction("c"))
     }
   }

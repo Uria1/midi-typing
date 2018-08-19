@@ -30,6 +30,7 @@ class MidiEventListener extends EventListener {
       case EventType.MidiNoteOn =>
         sendEventToHandlers(Event(
           eventTypeFrom(shortMessage.getCommand),
+          System.currentTimeMillis(),
           shortMessage.getChannel,
           shortMessage.getData2,
           Note(shortMessage.getData1))

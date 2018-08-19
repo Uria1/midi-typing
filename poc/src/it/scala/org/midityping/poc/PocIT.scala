@@ -11,7 +11,7 @@ class PocIT extends SpecificationWithJUnit {
       val midiListener = new MidiEventListener()
       val handler = new TestEventHandler
       midiListener.subscribe(handler)
-      midiListener.start
+      //midiListener.start
       //      eventually {
       //        device.sendEvent
       //        handler.messages.size mustNotEqual 0
