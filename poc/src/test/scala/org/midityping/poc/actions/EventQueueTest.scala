@@ -47,7 +47,7 @@ class EventQueueTest extends SpecificationWithJUnit with TestSupport {
     "route three events as 2 strikes" in new Context {
       val window1event1 = anEvent(timestamp = 100L)
       val window1event2 = anEvent(timestamp = 100L + strikeTimeWindow / 2)
-      val window2event1 = anEvent(timestamp = 100L + strikeTimeWindow + 100)
+      val window2event1 = anEvent(timestamp = 100L + strikeTimeWindow + randomInt(100, 400))
 
       enqueueEventOnTime(window1event1)
       enqueueEventOnTime(window1event2, Some(window1event1))
