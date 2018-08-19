@@ -8,8 +8,10 @@ import org.midityping.poc.midi.MidiEventListener
 import org.midityping.poc.system.{DefaultEventHandler, MidiTypingSystem}
 import org.specs2.matcher.Scope
 import org.specs2.mutable.SpecificationWithJUnit
+import poc.src.test.scala.org.midityping.poc.testsupport.TestSupport
 
-class AcceptanceTest extends SpecificationWithJUnit {
+class AcceptanceTest extends SpecificationWithJUnit with TestSupport {
+
   trait Context extends Scope {
     val mapper = new Mapper
     val eventListener = new MidiEventListener
@@ -22,12 +24,18 @@ class AcceptanceTest extends SpecificationWithJUnit {
   "MidiTypingSystem" should {
     "trigger a key press as a response for a note-on event" in new Context {
       system.loadMappingResource("/mapping.json")
-      eventListener.sendEventToHandlers(Event(EventType.MidiNoteOn, 0, 1, 127, Note.C4))
+      eventListener.triggerEvent(Event(EventType.MidiNoteOn, 0, 1, 127, Note.C4))
       actionExecutor.lastAction === Some(KeyPressAction("c"))
     }
 
     "trigger a key press as a response for multiple events" in new Context {
-ok
+      system.loadMappingResource("/mapping.json")
+
+      eventListener.triggerEvent(anEvent(timestamp = 0, note = Note.C4))
+      Thread.sleep(10)
+      eventListener.triggerEvent(anEvent(timestamp = 10, note = Note.F4))
+
+      actionExecutor.lastAction === Some(KeyPressAction("F1"))
     }
   }
 }

@@ -40,7 +40,9 @@ class MidiEventListener extends EventListener {
     }
   }
 
-  def sendEventToHandlers(event: Event): Unit = {
+  def triggerEvent(event:Event) = sendEventToHandlers(event)
+
+  private def sendEventToHandlers(event: Event): Unit = {
     handlers.foreach(_.message(event))
   }
 
