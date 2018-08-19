@@ -1,4 +1,4 @@
-package poc.src.test.scala.org.midityping.poc
+package poc.src.test.scala.org.midityping.poc.testsupport
 
 import org.midityping.poc.common.{MidiChannel, Note}
 import org.midityping.poc.events.EventType.EventType

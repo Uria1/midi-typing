@@ -1,5 +1,5 @@
 scala_specs2_junit_test(
-    name = "poc",
+    name = "common",
     size = "small",
     srcs = glob(["*.scala"]),
     deps = [

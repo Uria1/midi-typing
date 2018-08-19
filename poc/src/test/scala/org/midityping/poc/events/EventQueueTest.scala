@@ -1,9 +1,9 @@
-package poc.src.test.scala.org.midityping.poc.actions
+package poc.src.test.scala.org.midityping.poc.events
 
 import org.midityping.poc.events.{Event, EventQueue, Strike, StrikeListener}
 import org.specs2.matcher.Scope
 import org.specs2.mutable.SpecificationWithJUnit
-import poc.src.test.scala.org.midityping.poc.TestSupport
+import poc.src.test.scala.org.midityping.poc.testsupport.TestSupport
 
 class EventQueueTest extends SpecificationWithJUnit with TestSupport {
 

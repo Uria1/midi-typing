@@ -32,6 +32,6 @@ object MidiTypingApp {
     })
 
     system.start
-    Thread.sleep(600000)
+    Thread.sleep(Long.MaxValue)
   }
 }

@@ -1,6 +1,5 @@
-package poc.src.test.scala.org.midityping.poc
+package poc.src.test.scala.org.midityping.poc.common
 
-import org.midityping.poc._
 import org.midityping.poc.common.Note
 import org.specs2.mutable.SpecificationWithJUnit
 

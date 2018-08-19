@@ -1,4 +1,4 @@
-package poc.src.test.scala.org.midityping.poc
+package poc.src.test.scala.org.midityping.poc.acceptance
 
 import org.midityping.poc.actions.{Action, ActionExecutor}
 
