@@ -10,4 +10,5 @@ case class EventDescriptor(eventType: String, arg: String) {
 
 object EventDescriptor {
   def apply(eventType: EventType, arg: String): EventDescriptor = new EventDescriptor(eventType.toString, arg)
+  def apply(arg: String): EventDescriptor = new EventDescriptor(EventType.MidiNoteOn.toString, arg)
 }

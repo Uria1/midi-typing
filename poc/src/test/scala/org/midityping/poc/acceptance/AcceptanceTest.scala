@@ -3,7 +3,7 @@ package poc.src.test.scala.org.midityping.poc.acceptance
 import org.midityping.poc.actions.{DefaultActionFactory, KeyPressAction}
 import org.midityping.poc.common.Note
 import org.midityping.poc.events.{Event, EventType}
-import org.midityping.poc.mapping.Mapper
+import org.midityping.poc.mapping.Mapper1
 import org.midityping.poc.midi.MidiEventListener
 import org.midityping.poc.system.{DefaultEventHandler, MidiTypingSystem}
 import org.specs2.matcher.Scope
@@ -13,7 +13,7 @@ import poc.src.test.scala.org.midityping.poc.testsupport.TestSupport
 class AcceptanceTest extends SpecificationWithJUnit with TestSupport {
 
   trait Context extends Scope {
-    val mapper = new Mapper
+    val mapper = new Mapper1
     val eventListener = new MidiEventListener
     val actionFactory = new DefaultActionFactory
     val actionExecutor = new ActionExecutorStub

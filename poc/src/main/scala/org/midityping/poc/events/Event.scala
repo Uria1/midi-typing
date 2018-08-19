@@ -7,4 +7,9 @@ case class Event(eventType: EventType,
                  timestamp: Long,
                  channel: Int,
                  velocity: Int,
-                 note: Note)
+                 note: Note) {
+
+  def asDescriptor: EventDescriptor = {
+    EventDescriptor(eventType, note.fullName)
+  }
+}

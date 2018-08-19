@@ -1,9 +1,9 @@
 package org.midityping.poc.mapping
 
 import org.midityping.poc.actions.ActionDescriptor
-import org.midityping.poc.events.{Event, EventDescriptor, Strike}
+import org.midityping.poc.events.{Strike, StrikeDescriptor}
 
-class Mapper() {
+class Mapper {
   private var mappings: Seq[Mapping] = Seq.empty
 
   def appendMapping(mapping: Mapping): Unit = {
@@ -11,12 +11,12 @@ class Mapper() {
   }
 
   def getActionDescriptorFor(strike: Strike): Option[ActionDescriptor] = {
-    val event = strike.events.head
-    event match {
-      case ev: Event =>
-        val key = EventDescriptor(event.eventType, ev.note.fullName).asKey
-        mappings.collectFirst { case mapping if mapping.map.contains(key) => mapping.map(key) }
-    }
+    val strikeD = StrikeDescriptor(strike.events.map(_.asDescriptor))
+    val actions = for (
+      m <- mappings;
+      x <- m.data.find(_._1 == strikeD)
+    ) yield x._2
+    actions.headOption
   }
 }
 

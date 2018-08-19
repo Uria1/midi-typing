@@ -2,10 +2,10 @@ package org.midityping.poc.system
 
 import org.midityping.poc.actions.{ActionExecutor, ActionFactory}
 import org.midityping.poc.events.{Event, EventHandler, Strike}
-import org.midityping.poc.mapping.Mapper
+import org.midityping.poc.mapping.Mapper1
 import org.slf4j.LoggerFactory
 
-class DefaultEventHandler(mapper: Mapper, actionFactory: ActionFactory, actionExecutor: ActionExecutor) extends EventHandler {
+class DefaultEventHandler(mapper: Mapper1, actionFactory: ActionFactory, actionExecutor: ActionExecutor) extends EventHandler {
   val logger = LoggerFactory.getLogger(getClass)
 
   override def message(event: Event): Unit = {

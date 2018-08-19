@@ -5,6 +5,7 @@ scala_library(
     deps = [
         "//poc/src/main/scala/org/midityping/poc/mapping",
         "//poc/src/main/scala/org/midityping/poc/actions",
+        "//poc/src/main/scala/org/midityping/poc/events",
         "@com_google_code_gson__gson//jar",
     ],
 )
