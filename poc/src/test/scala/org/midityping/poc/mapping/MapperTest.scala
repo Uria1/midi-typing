@@ -4,18 +4,11 @@ import org.midityping.poc.actions.{ActionDescriptor => ActionD}
 import org.midityping.poc.common.Note
 import org.midityping.poc.events.{Strike, EventDescriptor => EventD, StrikeDescriptor => StrikeD}
 import org.midityping.poc.mapping.storage.CustomMappingLoader
-import org.midityping.poc.mapping.{Mapper, Mapping, Mapping1}
+import org.midityping.poc.mapping.{Mapper, Mapping}
 import org.specs2.mutable.SpecificationWithJUnit
 import poc.src.test.scala.org.midityping.poc.testsupport.TestSupport
 
 class MapperTest extends SpecificationWithJUnit with TestSupport {
-  val mapC1 = Mapping1(Map(
-    EventD("C4").asKey -> ActionD("c")
-  ))
-  val mapD1 = Mapping1(Map(
-    EventD("D4").asKey -> ActionD("d")
-  ))
-
   val mapC = Mapping(StrikeD("C4"), ActionD("c"))
   val mapD = Mapping(StrikeD("D4"), ActionD("d"))
   val mapC4andF4 = Mapping((StrikeD(Seq(EventD("C4"), EventD("F4"))), ActionD("x")))

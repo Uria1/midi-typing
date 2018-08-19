@@ -1,7 +1,7 @@
 package org.midityping.poc.mapping.storage
 
-import org.midityping.poc.mapping.Mapping1
+import org.midityping.poc.mapping.Mapping
 
 trait MappingStorage {
-  def load(): Seq[Mapping1]
+  def load(): Seq[Mapping]
 }

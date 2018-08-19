@@ -2,12 +2,12 @@ package org.midityping.poc.system
 
 import org.midityping.poc.actions.{ActionExecutor, ActionFactory}
 import org.midityping.poc.events.{EventHandler, EventListener}
-import org.midityping.poc.mapping.storage.JsonMappingLoader
-import org.midityping.poc.mapping.{Mapper1, Mapping1}
+import org.midityping.poc.mapping.storage.CustomMappingLoader
+import org.midityping.poc.mapping.{Mapper, Mapping}
 
 class MidiTypingSystem(eventListener: EventListener,
                        eventHandler: EventHandler,
-                       mapper: Mapper1,
+                       mapper: Mapper,
                        actionFactory: ActionFactory,
                        actionExecutor: ActionExecutor) {
   def start: Unit = {
@@ -17,10 +17,10 @@ class MidiTypingSystem(eventListener: EventListener,
   eventListener.subscribe(eventHandler)
 
   def loadMappingResource(resourcePath: String): Unit = {
-    mapper.appendMapping(JsonMappingLoader.load(resourcePath))
+    mapper.appendMapping(CustomMappingLoader.load(resourcePath))
   }
 
-  def loadMapping(mapping: Mapping1): Unit = {
+  def loadMapping(mapping: Mapping): Unit = {
     mapper.appendMapping(mapping)
   }
 }
