@@ -2,20 +2,28 @@ package org.midityping.poc.events
 
 import java.util.concurrent.ConcurrentLinkedQueue
 
+import org.midityping.poc.logging.Logger
+
 import scala.collection.JavaConverters._
-import scala.util.Try
 
 class EventQueue(listener: StrikeListener, strikeTimeWindow: Int) {
+  val logger = Logger.forClass(getClass)
   val events = new ConcurrentLinkedQueue[Event]
   var windowStartTime = 0L
   val lock = new Object
+  val eventQueueLock = new Object
 
   val strikeThread = new Thread(() => {
     while (true) {
       lock.synchronized {
-        lock.wait()
+        if (events.isEmpty) {
+          logger.trace("sleeping...")
+          lock.wait()
+        }
       }
+      logger.trace("finished sleeping, start window sleep. size" + events.size())
       Thread.sleep(strikeTimeWindow)
+      logger.trace("end window sleep, size" + events.size())
       listener.strike(flushEventsAsStrike())
     }
   })
@@ -23,22 +31,25 @@ class EventQueue(listener: StrikeListener, strikeTimeWindow: Int) {
   strikeThread.start()
 
   def enqueue(event: Event): Unit = {
-    val emptyQueue = events.isEmpty
-    events.add(event)
-    if (emptyQueue)
-      lock.synchronized {
-        lock.notify()
+    lock.synchronized {
+      eventQueueLock.synchronized {
+        val emptyQueue = events.isEmpty
+        events.add(event)
+        if (emptyQueue) {
+          logger.trace("notify, size: " + events.size())
+          lock.notify()
+        }
       }
+    }
   }
 
-  //  private def timeWindowConcluded: Boolean = {
-  //    System.currentTimeMillis() - windowStartTime > strikeTimeWindow
-  //  }
-
   private def flushEventsAsStrike(): Strike = {
-    val strike = Strike(events.asScala.toSeq)
-    events.clear()
-    strike
+    eventQueueLock.synchronized {
+      val strike = Strike(events.asScala.toSeq)
+      events.clear()
+      logger.trace("strike , size: " + strike.events.size)
+      strike
+    }
   }
 
 }

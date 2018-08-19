@@ -1,6 +1,6 @@
 package poc.src.test.scala.org.midityping.poc.actions
 
-import org.midityping.poc.events.{EventQueue, Strike, StrikeListener}
+import org.midityping.poc.events.{Event, EventQueue, Strike, StrikeListener}
 import org.specs2.matcher.Scope
 import org.specs2.mutable.SpecificationWithJUnit
 import poc.src.test.scala.org.midityping.poc.TestSupport
@@ -11,6 +11,14 @@ class EventQueueTest extends SpecificationWithJUnit with TestSupport {
     val listener = new TestStrikeListener
     val strikeTimeWindow = randomInt(100, 500)
     val q = new EventQueue(listener, strikeTimeWindow)
+
+    def enqueueEventOnTime(event: Event, previousEvent: Option[Event] = None) = {
+      previousEvent match {
+        case Some(prevEvent) => Thread.sleep(event.timestamp - prevEvent.timestamp)
+        case _ =>
+      }
+      q.enqueue(event)
+    }
   }
 
   "EventQueue" >> {
@@ -41,13 +49,15 @@ class EventQueueTest extends SpecificationWithJUnit with TestSupport {
       val event2 = anEvent(timestamp = 100L + strikeTimeWindow / 2)
       val event3 = anEvent(timestamp = 100L + strikeTimeWindow + 100)
 
-      q.enqueue(event1)
-      q.enqueue(event2)
-      q.enqueue(event3)
+      enqueueEventOnTime(event1)
+      enqueueEventOnTime(event2, Some(event1))
+      enqueueEventOnTime(event3, Some(event2))
 
       eventually {
+        listener.strikes.head.events.size === 2
         listener.strikes.head.events.head === event1
         listener.strikes.head.events.tail.head === event2
+        listener.strikes.tail.head.events.size === 1
         listener.strikes.tail.head.events.head === event3
       }
     }
