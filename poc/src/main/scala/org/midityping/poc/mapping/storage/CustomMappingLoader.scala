@@ -19,7 +19,7 @@ object CustomMappingLoader {
   def load(resourceFilename: String): Mapping = {
     val source = Source.fromURL(getClass.getResource(resourceFilename))
     val mapping = load(source)
-    source.close()
+    //source.close()
     mapping
   }
 

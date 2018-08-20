@@ -1,1 +1,1 @@
-MidiNoteOn:C4, MidiNoteOn:F4 -> KeyPress:x
+MidiNoteOn:C4,MidiNoteOn:F4 -> KeyPress:x
