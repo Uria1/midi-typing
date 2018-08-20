@@ -9,7 +9,7 @@ class DefaultEventHandler(mapper: Mapper, actionFactory: ActionFactory, actionEx
   val logger = LoggerFactory.getLogger(getClass)
 
   override def message(event: Event): Unit = {
-    mapper.getActionDescriptorFor(Strike(event)) match {
+    mapper.getActionDescriptor(Strike(event)) match {
       case Some(descriptor) =>
         if (event.velocity > 3) {
           println(s"mapped event: $event -> $descriptor")

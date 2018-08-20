@@ -16,30 +16,30 @@ class MapperTest extends SpecificationWithJUnit with TestSupport {
   "Mapper" >> {
     "map NoteOn event to KeyPress action" in {
       val mapper = Mapper.withMapping(mapC)
-      mapper.getActionDescriptorFor(Strike(anEvent(Note.C4))) === Some(ActionD("c"))
+      mapper.getActionDescriptor(Strike(anEvent(Note.C4))) === Some(ActionD("c"))
     }
 
     "map NoteOn event to KeyPress action using a mapping file" in {
       val mapper = Mapper.withMapping(CustomMappingLoader.load("/mapping.mdt"))
-      mapper.getActionDescriptorFor(Strike(anEvent(Note.C4))) === Some(ActionD("c"))
+      mapper.getActionDescriptor(Strike(anEvent(Note.C4))) === Some(ActionD("c"))
     }
 
     "use multiple mappings" in {
       val mapper = new Mapper
       mapper.appendMapping(mapC)
       mapper.appendMapping(mapD)
-      mapper.getActionDescriptorFor(Strike(anEvent(Note.C4))) === Some(ActionD("c"))
-      mapper.getActionDescriptorFor(Strike(anEvent(Note.D4))) === Some(ActionD("d"))
+      mapper.getActionDescriptor(Strike(anEvent(Note.C4))) === Some(ActionD("c"))
+      mapper.getActionDescriptor(Strike(anEvent(Note.D4))) === Some(ActionD("d"))
     }
 
     "map strike with two events" in {
       val mapper = Mapper.withMapping(mapC4andF4)
-      mapper.getActionDescriptorFor(Strike(Seq(anEvent(Note.C4), anEvent(Note.F4)))) === Some(ActionD("x"))
+      mapper.getActionDescriptor(Strike(Seq(anEvent(Note.C4), anEvent(Note.F4)))) === Some(ActionD("x"))
     }
 
     "map strike with two events using mapping file" in {
       val mapper = Mapper.withMapping(CustomMappingLoader.load("/mapC4andF4.mdt"))
-      mapper.getActionDescriptorFor(Strike(Seq(anEvent(Note.C4), anEvent(Note.F4)))) === Some(ActionD("x"))
+      mapper.getActionDescriptor(Strike(Seq(anEvent(Note.C4), anEvent(Note.F4)))) === Some(ActionD("x"))
     }
   }
 }

@@ -10,7 +10,7 @@ class Mapper {
     mappings = mappings :+ mapping
   }
 
-  def getActionDescriptorFor(strike: Strike): Option[ActionDescriptor] = {
+  def getActionDescriptor(strike: Strike): Option[ActionDescriptor] = {
     val strikeD = StrikeDescriptor(strike.events.map(_.asDescriptor))
 
     mappings.collectFirst({
