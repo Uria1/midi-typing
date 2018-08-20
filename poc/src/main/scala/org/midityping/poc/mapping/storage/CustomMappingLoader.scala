@@ -2,8 +2,8 @@ package org.midityping.poc.mapping.storage
 
 import java.io._
 
-import org.midityping.poc.actions.ActionDescriptor
-import org.midityping.poc.events.{EventDescriptor, StrikeDescriptor}
+import org.midityping.poc.actions.{ActionDescriptor, ActionType}
+import org.midityping.poc.events.{EventDescriptor, EventType, StrikeDescriptor}
 import org.midityping.poc.mapping.Mapping
 
 import scala.io.{BufferedSource, Source}
@@ -40,18 +40,25 @@ object CustomMappingLoader {
   private def strikeDescriptor(s: String): StrikeDescriptor = {
     StrikeDescriptor(s.split(',').map(event => {
       val tokens = event.split(':')
-      if (tokens.size != 2) {
+      if (tokens.size == 2) {
+        EventDescriptor(tokens(0), tokens(1))
+      } else if (tokens.size == 1) {
+        EventDescriptor(EventType.MidiNoteOn, tokens(0))
+      } else {
         throw new Exception(s"Invalid event descriptor '$s'")
       }
-      EventDescriptor(tokens(0), tokens(1))
+
     }))
   }
 
   private def actionDescriptor(s: String): ActionDescriptor = {
     val tokens = s.split(':')
-    if (tokens.size != 2) {
+    if (tokens.size == 2) {
+      ActionDescriptor(tokens(0), tokens(1))
+    } else if (tokens.size == 1) {
+      ActionDescriptor(ActionType.KeyPress, tokens(0))
+    } else {
       throw new Exception(s"Invalid action descriptor '$s'")
     }
-    ActionDescriptor(tokens(0), tokens(1))
   }
 }

@@ -1,2 +1,5 @@
 MidiNoteOn:C4 -> KeyPress:C
 MidiNoteOn:C4,MidiNoteOn:F4 -> KeyPress:F1
+D4 -> KeyPress:D
+MidiNoteOn:E4 -> E
+F4 -> F
