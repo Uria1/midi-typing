@@ -11,9 +11,13 @@ object MidiTypingApp {
   val logger = Logger.forClass(getClass)
 
   def main(args: Array[String]): Unit = {
-    val actionExecutor = new DefaultActionExecutor
-    val system = new MidiTypingSystem(actionExecutor)
+    val system = new MidiTypingSystem(new DefaultActionExecutor)
+    loadMapping(system)
+    system.start
+    Thread.sleep(Long.MaxValue)
+  }
 
+  private def loadMapping(system: MidiTypingSystem) = {
     val storageDir = new File("midi-typing/mappings/")
     if (!storageDir.exists()) {
       logger.info("creating dir " + storageDir.getAbsolutePath)
@@ -24,8 +28,5 @@ object MidiTypingApp {
     mappingStorage.load().foreach(mapping => {
       system.loadMapping(mapping)
     })
-
-    system.start
-    Thread.sleep(Long.MaxValue)
   }
 }
