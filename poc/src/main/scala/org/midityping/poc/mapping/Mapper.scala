@@ -13,13 +13,9 @@ class Mapper {
   def getActionDescriptorFor(strike: Strike): Option[ActionDescriptor] = {
     val strikeD = StrikeDescriptor(strike.events.map(_.asDescriptor))
 
-    val mappingWithMatchingStrike = mappings.find(m => {
-      m.data.exists(_._1.asKey == strikeD.asKey)
-    })
-
-    mappingWithMatchingStrike.flatMap(_.data.collectFirst({
-      case (descriptor, action) if descriptor.asKey == strikeD.asKey => action
-    }))
+    mappings.collectFirst({
+      case mapping if mapping.data.exists(_._1.asKey == strikeD.asKey) => mapping.data.find(_._1.asKey == strikeD.asKey)
+    }).flatten.map(_._2)
   }
 }
 

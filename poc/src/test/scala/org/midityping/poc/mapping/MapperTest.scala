@@ -19,7 +19,7 @@ class MapperTest extends SpecificationWithJUnit with TestSupport {
       mapper.getActionDescriptorFor(Strike(anEvent(Note.C4))) === Some(ActionD("c"))
     }
 
-    "map NoteOn event to KeyPress action using mapping file" in {
+    "map NoteOn event to KeyPress action using a mapping file" in {
       val mapper = Mapper.withMapping(CustomMappingLoader.load("/mapping.mdt"))
       mapper.getActionDescriptorFor(Strike(anEvent(Note.C4))) === Some(ActionD("c"))
     }
