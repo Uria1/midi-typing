@@ -1,0 +1,2 @@
+MidiNoteOn:C4 -> KeyPress:C
+MidiNoteOn:C4,MidiNoteOn:F4 -> KeyPress:F1

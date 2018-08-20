@@ -38,7 +38,7 @@ class MapperTest extends SpecificationWithJUnit with TestSupport {
     }
 
     "map strike with two events using mapping file" in {
-      val mapper = Mapper.withMapping(CustomMappingLoader.load("/mapC4andF4.mdt"))
+      val mapper = Mapper.withMapping(CustomMappingLoader.load("/map-c4-and-f4.mdt"))
       mapper.getActionDescriptor(Strike(Seq(anEvent(Note.C4), anEvent(Note.F4)))) === Some(ActionD("x"))
     }
   }
