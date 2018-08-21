@@ -8,9 +8,11 @@ class DefaultActionFactory extends ActionFactory {
     logger.trace(s"creating action for $descriptor")
     ActionType.withName(descriptor.actionType) match {
       case ActionType.KeyPress =>
-        val action = KeyPressAction(descriptor.arg)
-        logger.trace(s"action: $action")
-        action
+        KeyPressAction(descriptor.arg)
+      case ActionType.KeyRelease =>
+        KeyReleaseAction(descriptor.arg)
+      case ActionType.KeyStroke =>
+        KeyStrokeAction(descriptor.arg)
     }
   }
 }

@@ -1,2 +1,4 @@
 C4 -> C
 C4,F4 -> F1
+D4,G4 -> KeyPress:CONTROL
+D#4,G#4 -> KeyRelease:CONTROL

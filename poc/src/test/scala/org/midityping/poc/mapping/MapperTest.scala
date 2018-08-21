@@ -14,27 +14,27 @@ class MapperTest extends SpecificationWithJUnit with TestSupport {
   val mapC4andF4 = Mapping((StrikeD(Seq(EventD("C4"), EventD("F4"))), ActionD("X")))
 
   "Mapper" >> {
-    "map NoteOn event to KeyPress action" in {
+    "map NoteOn event to KeyStroke action" in {
       val mapper = Mapper.withMapping(mapC)
       mapper.getActionDescriptor(Strike(anEvent(Note.C4))) === Some(ActionD("C"))
     }
 
-    "map NoteOn event to KeyPress action using a mapping file" in {
+    "map NoteOn event to KeyStroke action using a mapping file" in {
       val mapper = Mapper.withMapping(CustomMappingLoader.load("/mapping.mdt"))
       mapper.getActionDescriptor(Strike(anEvent(Note.C4))) === Some(ActionD("C"))
     }
 
-    "map NoteOn event to KeyPress action using a mapping, event type omitted" in {
+    "map NoteOn event to KeyStroke action using a mapping, event type omitted" in {
       val mapper = Mapper.withMapping(CustomMappingLoader.load("/mapping.mdt"))
       mapper.getActionDescriptor(Strike(anEvent(Note.D4))) === Some(ActionD("D"))
     }
 
-    "map NoteOn event to KeyPress action using a mapping, action type omitted" in {
+    "map NoteOn event to KeyStroke action using a mapping, action type omitted" in {
       val mapper = Mapper.withMapping(CustomMappingLoader.load("/mapping.mdt"))
       mapper.getActionDescriptor(Strike(anEvent(Note.E4))) === Some(ActionD("E"))
     }
 
-    "map NoteOn event to KeyPress action using a mapping, event type and action type omitted" in {
+    "map NoteOn event to KeyStroke action using a mapping, event type and action type omitted" in {
       val mapper = Mapper.withMapping(CustomMappingLoader.load("/mapping.mdt"))
       mapper.getActionDescriptor(Strike(anEvent(Note.F4))) === Some(ActionD("F"))
     }

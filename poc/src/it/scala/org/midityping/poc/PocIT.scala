@@ -5,7 +5,7 @@ import org.specs2.mutable.SpecificationWithJUnit
 
 class PocIT extends SpecificationWithJUnit {
   "A Note" should {
-    "trigger A key press" in {
+    "trigger A key stroke" in {
       val device = new MidiTestDevice
 
       val midiListener = new MidiEventListener()

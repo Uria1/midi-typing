@@ -1,4 +1,4 @@
-MidiNoteOn:C4 -> KeyPress:C
-D4 -> KeyPress:D
+MidiNoteOn:C4 -> KeyStroke:C
+D4 -> KeyStroke:D
 MidiNoteOn:E4 -> E
 F4 -> F

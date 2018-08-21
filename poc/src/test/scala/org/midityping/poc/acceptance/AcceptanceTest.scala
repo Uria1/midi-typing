@@ -1,6 +1,6 @@
 package poc.src.test.scala.org.midityping.poc.acceptance
 
-import org.midityping.poc.actions.KeyPressAction
+import org.midityping.poc.actions.{KeyPressAction, KeyReleaseAction, KeyStrokeAction}
 import org.midityping.poc.common.Note
 import org.midityping.poc.events._
 import org.midityping.poc.system.MidiTypingSystem
@@ -14,20 +14,46 @@ class AcceptanceTest extends SpecificationWithJUnit with TestSupport {
     val actionExecutorStub = new ActionExecutorStub
     val system = new MidiTypingSystem(actionExecutorStub)
     system.loadMappingResource("/acceptance-test-mapping.mdt")
+
+    def triggerEvents(events: Event*) = {
+      events.foldLeft(0L)((timeBetweenEvents, event) => {
+        Thread.sleep(timeBetweenEvents)
+        system.eventListener.triggerEvent(event)
+        event.timestamp - timeBetweenEvents
+      })
+    }
   }
 
   "MidiTypingSystem" should {
-    "trigger a key press as a response for a note-on event" in new Context {
-      system.eventListener.triggerEvent(Event(EventType.MidiNoteOn, 0, 1, 127, Note.C4))
-      eventually(actionExecutorStub.lastAction === Some(KeyPressAction("C")))
+    "trigger a key stroke as a response for a note-on event" in new Context {
+      triggerEvents(anEvent(timestamp = 0, note = Note.C4))
+      eventually(actionExecutorStub.lastAction === Some(KeyStrokeAction("C")))
     }
 
-    "trigger a key press as a response for multiple events" in new Context {
-      system.eventListener.triggerEvent(anEvent(timestamp = 0, note = Note.C4))
-      Thread.sleep(10)
-      system.eventListener.triggerEvent(anEvent(timestamp = 10, note = Note.F4))
+    "trigger a key stroke as a response for multiple events" in new Context {
+      triggerEvents(
+        anEvent(timestamp = 0, note = Note.C4),
+        anEvent(timestamp = 10, note = Note.F4)
+      )
 
-      eventually(actionExecutorStub.lastAction === Some(KeyPressAction("F1")))
+      eventually(actionExecutorStub.lastAction === Some(KeyStrokeAction("F1")))
+    }
+
+    "trigger a key stroke with modifier key" in new Context {
+      triggerEvents(
+        anEvent(timestamp = 0, note = Note.D4),
+        anEvent(timestamp = 10, note = Note.G4),
+        anEvent(timestamp = 210, note = Note.C4),
+        anEvent(timestamp = 300, note = Note.Ds4),
+        anEvent(timestamp = 310, note = Note.Gs4)
+      )
+
+      eventually {
+        actionExecutorStub.actions must haveSize(3)
+        actionExecutorStub.actions.head === KeyPressAction("CONTROL")
+        actionExecutorStub.actions(1) === KeyStrokeAction("C")
+        actionExecutorStub.actions(2) === KeyReleaseAction("CONTROL")
+      }
     }
   }
 }

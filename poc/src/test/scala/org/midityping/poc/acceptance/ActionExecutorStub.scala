@@ -4,8 +4,10 @@ import org.midityping.poc.actions.{Action, ActionExecutor}
 
 class ActionExecutorStub extends ActionExecutor {
   var lastAction: Option[Action] = None
+  var actions = Seq.empty[Action]
 
   override def execute(action: Action): Unit = {
-    lastAction = Some(action)
+    actions = actions :+ action
+    lastAction = Some(actions.last)
   }
 }

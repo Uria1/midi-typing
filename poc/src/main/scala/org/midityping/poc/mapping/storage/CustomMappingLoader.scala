@@ -56,7 +56,7 @@ object CustomMappingLoader {
     if (tokens.size == 2) {
       ActionDescriptor(tokens(0), tokens(1))
     } else if (tokens.size == 1) {
-      ActionDescriptor(ActionType.KeyPress, tokens(0))
+      ActionDescriptor(ActionType.KeyStroke, tokens(0))
     } else {
       throw new Exception(s"Invalid action descriptor '$s'")
     }
