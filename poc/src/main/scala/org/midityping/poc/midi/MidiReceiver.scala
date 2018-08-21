@@ -17,7 +17,7 @@ class MidiReceiver(listener: MidiEventListener) extends Receiver {
         case _ =>
       }
     }.recover {
-      case ex => ex.printStackTrace()
+      case ex => logger.error(ex.getMessage, ex)
     }
   }
 

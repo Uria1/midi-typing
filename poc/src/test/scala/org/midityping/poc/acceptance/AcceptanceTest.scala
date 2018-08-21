@@ -57,7 +57,6 @@ class AcceptanceTest extends SpecificationWithJUnit with TestSupport {
         actionExecutorStub.actions(1) === KeyStrokeAction("C")
         actionExecutorStub.actions(2) === KeyReleaseAction("CONTROL")
       }
-
     }
   }
 }
