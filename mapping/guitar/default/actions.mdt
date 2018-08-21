@@ -1,3 +1,16 @@
 D4 -> SPACE
 A#4 -> ENTER
 G#2 -> BACK_SPACE
+E4,A4 -> TAB
+
+A#2,F3 -> KeyPress:SHIFT
+A2,E3 -> KeyRelease:SHIFT
+
+D#3,A#3 -> KeyPress:CONTROL
+D3,A3 -> KeyRelease:CONTROL
+
+G#3,D#3 -> KeyPress:ALT
+G3,D3 -> KeyRelease:ALT
+
+C#4,G4 -> KeyPress:META
+C4,F#4 -> KeyRelease:META
