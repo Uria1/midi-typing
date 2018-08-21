@@ -3,6 +3,7 @@ scala_specs2_junit_test(
     size = "small",
     srcs = glob(["*.scala"]),
     deps = [
+        "//poc/src/main/scala/org/midityping/poc/logging",
         "//poc/src/main/scala/org/midityping/poc/actions",
         "//poc/src/main/scala/org/midityping/poc/mapping",
         "//poc/src/main/scala/org/midityping/poc/mapping/storage",
@@ -11,8 +12,14 @@ scala_specs2_junit_test(
         "//poc/src/main/scala/org/midityping/poc/common",
         "//poc/src/main/scala/org/midityping/poc/events",
         "//poc/src/test/scala/org/midityping/poc/testsupport",
+        "@org_slf4j__slf4j_api//jar",
+        "@ch_qos_logback__logback_classic//jar",
+        "@ch_qos_logback__logback_core//jar",
     ],
-    resources = ["//poc/src/test/resources:test-deps"],
+    resources = [
+        "//poc/src/test/resources/acceptance",
+        "//poc/src/test/resources/logging",
+    ],
     visibility = ["//visibility:public"],
     suffixes = ["Test"],
 )

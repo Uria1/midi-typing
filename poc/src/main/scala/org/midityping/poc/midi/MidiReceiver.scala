@@ -1,12 +1,12 @@
 package org.midityping.poc.midi
 
 import javax.sound.midi.{MidiMessage, Receiver, ShortMessage}
-import org.midityping.poc.logging.Logger
+import org.midityping.poc.logging.aLogger
 
 import scala.util.Try
 
 class MidiReceiver(listener: MidiEventListener) extends Receiver {
-  val logger = Logger.forClass(getClass)
+  val logger = aLogger.forClass(getClass)
 
   override def send(message: MidiMessage, timeStamp: Long): Unit = {
     Try {

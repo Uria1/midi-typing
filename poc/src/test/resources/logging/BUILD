@@ -1,6 +1,6 @@
 filegroup(
-    name = "resources",
+    name = "logging",
     testonly = 1,
-    srcs = glob(["*.mdt"]),
+    srcs = glob(["*.xml"]),
     visibility = ["//visibility:public"],
 )

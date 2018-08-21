@@ -11,7 +11,6 @@ scala_specs2_junit_test(
         "//poc/src/main/scala/org/midityping/poc/common",
         "//poc/src/main/scala/org/midityping/poc/events",
     ],
-    resources = ["//poc/src/test/resources:test-deps"],
     visibility = ["//visibility:public"],
     suffixes = ["Test"],
 )

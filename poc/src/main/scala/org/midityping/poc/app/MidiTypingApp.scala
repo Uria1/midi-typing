@@ -3,12 +3,12 @@ package org.midityping.poc.app
 import java.io.File
 
 import org.midityping.poc.actions.DefaultActionExecutor
-import org.midityping.poc.logging.Logger
+import org.midityping.poc.logging.aLogger
 import org.midityping.poc.mapping.storage.FileMappingStorage
 import org.midityping.poc.system.MidiTypingSystem
 
 object MidiTypingApp {
-  val logger = Logger.forClass(getClass)
+  val logger = aLogger.forClass(getClass)
 
   def main(args: Array[String]): Unit = {
     val system = new MidiTypingSystem(new DefaultActionExecutor)

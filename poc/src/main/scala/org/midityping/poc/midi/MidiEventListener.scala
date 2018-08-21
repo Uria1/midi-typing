@@ -4,10 +4,10 @@ import javax.sound.midi.{MidiSystem, ShortMessage}
 import org.midityping.poc.common.Note
 import org.midityping.poc.events.EventType.EventType
 import org.midityping.poc.events.{Event, EventHandler, EventListener, EventType}
-import org.midityping.poc.logging.Logger
+import org.midityping.poc.logging.aLogger
 
 class MidiEventListener extends EventListener {
-  val logger = Logger.forClass(getClass)
+  val logger = aLogger.forClass(getClass)
   var handlers: Seq[EventHandler] = Seq.empty
 
   def subscribe(eventHandler: EventHandler) = {

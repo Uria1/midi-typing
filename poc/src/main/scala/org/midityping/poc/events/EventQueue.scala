@@ -2,12 +2,12 @@ package org.midityping.poc.events
 
 import java.util.concurrent.ConcurrentLinkedQueue
 
-import org.midityping.poc.logging.Logger
+import org.midityping.poc.logging.aLogger
 
 import scala.collection.JavaConverters._
 
-class EventQueue(listener: StrikeListener, strikeTimeWindow: Int) {
-  val logger = Logger.forClass(getClass)
+class EventQueue(listener: StrikeListener, strikeTimeWindow: Long) {
+  val logger = aLogger.forClass(getClass)
   val events = new ConcurrentLinkedQueue[Event]
   var windowStartTime = 0L
   val lock = new Object

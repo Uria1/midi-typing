@@ -13,7 +13,7 @@ trait TestSupport {
 
   def randomLong = random.nextLong
 
-  def randomVelocity = randomInt(0, 127)
+  def randomVelocity = randomInt(20, 127)
 
   def randomNote:Note = Note(randomInt(0,127))
 

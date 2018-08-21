@@ -14,7 +14,8 @@ class Mapper {
     val strikeD = StrikeDescriptor(strike.events.map(_.asDescriptor))
 
     mappings.collectFirst({
-      case mapping if mapping.data.exists(_._1.asKey == strikeD.asKey) => mapping.data.find(_._1.asKey == strikeD.asKey)
+      case mapping if mapping.data.exists(_._1.asKey == strikeD.asKey) =>
+        mapping.data.find(_._1.asKey == strikeD.asKey)
     }).flatten.map(_._2)
   }
 }

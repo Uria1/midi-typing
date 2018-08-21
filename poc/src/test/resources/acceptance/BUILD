@@ -1,5 +1,5 @@
 filegroup(
-    name = "resources",
+    name = "acceptance",
     testonly = 1,
     srcs = glob(["*.mdt"]),
     visibility = ["//visibility:public"],

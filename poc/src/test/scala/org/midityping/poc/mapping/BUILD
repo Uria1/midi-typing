@@ -12,7 +12,7 @@ scala_specs2_junit_test(
         "//poc/src/main/scala/org/midityping/poc/actions",
         "//poc/src/test/scala/org/midityping/poc/testsupport",
     ],
-    resources = ["//poc/src/test/resources:test-deps"],
+    resources = ["//poc/src/test/resources"],
     visibility = ["//visibility:public"],
     suffixes = ["Test"],
 )
