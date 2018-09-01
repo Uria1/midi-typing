@@ -14,6 +14,8 @@ object Note {
     Note(noteName, octave, noteNumber)
   }
 
+  def C2 = Note(36)
+  def D2 = Note(38)
   def C4 = Note(60)
   def D4 = Note(62)
   def Ds4 = Note(63)

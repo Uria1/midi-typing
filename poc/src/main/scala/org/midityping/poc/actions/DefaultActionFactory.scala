@@ -2,7 +2,7 @@ package org.midityping.poc.actions
 
 import org.midityping.poc.logging.aLogger
 
-class DefaultActionFactory extends ActionFactory {
+class DefaultActionFactory(modeManager: ModeManager) extends ActionFactory {
   val logger = aLogger.forClass(getClass)
 
   override def createAction(descriptor: ActionDescriptor): Action = {
@@ -14,6 +14,8 @@ class DefaultActionFactory extends ActionFactory {
         KeyReleaseAction(descriptor.arg)
       case ActionType.KeyStroke =>
         KeyStrokeAction(descriptor.arg)
+      case ActionType.ChangeMode =>
+        ChangeModeAction(descriptor.arg, modeManager)
     }
   }
 }

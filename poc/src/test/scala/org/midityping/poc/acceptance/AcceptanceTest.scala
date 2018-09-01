@@ -1,6 +1,6 @@
 package poc.src.test.scala.org.midityping.poc.acceptance
 
-import org.midityping.poc.actions.{KeyPressAction, KeyReleaseAction, KeyStrokeAction}
+import org.midityping.poc.actions._
 import org.midityping.poc.common.{Mode, Note}
 import org.midityping.poc.events._
 import org.midityping.poc.logging.aLogger
@@ -65,9 +65,11 @@ class AcceptanceTest extends SpecificationWithJUnit with TestSupport {
       triggerEvents(anEvent(timestamp = 0, note = Note.C4))
       eventually(actionExecutorStub.lastAction === Some(KeyStrokeAction("C")))
 
-      system.currentMode = "numbers"
+      triggerEvents(anEvent(timestamp = 100, note = Note.C2))
+      eventually(actionExecutorStub.lastAction === Some(ChangeModeAction("numbers", system.modeManager)))
+
       system.currentMode === "numbers"
-      triggerEvents(anEvent(timestamp = 0, note = Note.C4))
+      triggerEvents(anEvent(timestamp = 200, note = Note.C4))
       eventually(actionExecutorStub.lastAction === Some(KeyStrokeAction("1")))
     }
   }
