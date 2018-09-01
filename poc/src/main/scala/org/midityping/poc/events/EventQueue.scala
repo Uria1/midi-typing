@@ -45,7 +45,8 @@ class EventQueue(listener: StrikeListener, strikeTimeWindow: Long) {
 
   private def flushEventsAsStrike(): Strike = {
     eventQueueLock.synchronized {
-      val strike = Strike(events.asScala.toSeq)
+      val eventSeq = events.asScala.toSeq
+      val strike = Strike(eventSeq)
       events.clear()
       logger.trace("strike , size: " + strike.events.size)
       strike

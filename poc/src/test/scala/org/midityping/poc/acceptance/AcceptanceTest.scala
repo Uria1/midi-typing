@@ -1,7 +1,7 @@
 package poc.src.test.scala.org.midityping.poc.acceptance
 
 import org.midityping.poc.actions.{KeyPressAction, KeyReleaseAction, KeyStrokeAction}
-import org.midityping.poc.common.Note
+import org.midityping.poc.common.{Mode, Note}
 import org.midityping.poc.events._
 import org.midityping.poc.logging.aLogger
 import org.midityping.poc.system.MidiTypingSystem
@@ -15,7 +15,8 @@ class AcceptanceTest extends SpecificationWithJUnit with TestSupport {
   trait Context extends Scope {
     val actionExecutorStub = new ActionExecutorStub
     val system = new MidiTypingSystem(actionExecutorStub)
-    system.loadMappingResource("/acceptance/acceptance-test-mapping.mdt")
+    system.loadMappingResource("/acceptance/default.mdt")
+    system.loadMappingResource("/acceptance/numbers.mdt")
 
     def triggerEvents(events: Event*) = {
       events.foldLeft(0L)((lastTimestamp, event) => {
@@ -57,6 +58,17 @@ class AcceptanceTest extends SpecificationWithJUnit with TestSupport {
         actionExecutorStub.actions(1) === KeyStrokeAction("C")
         actionExecutorStub.actions(2) === KeyReleaseAction("CONTROL")
       }
+    }
+
+    "trigger key strokes in different modes" in new Context {
+      system.currentMode === Mode.default
+      triggerEvents(anEvent(timestamp = 0, note = Note.C4))
+      eventually(actionExecutorStub.lastAction === Some(KeyStrokeAction("C")))
+
+      system.currentMode = "numbers"
+      system.currentMode === "numbers"
+      triggerEvents(anEvent(timestamp = 0, note = Note.C4))
+      eventually(actionExecutorStub.lastAction === Some(KeyStrokeAction("1")))
     }
   }
 }

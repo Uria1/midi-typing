@@ -2,6 +2,9 @@ D4 -> SPACE
 A#4 -> ENTER
 G#2 -> BACK_SPACE
 E4,A4 -> TAB
+C#5 -> COMMA
+D5 -> PERIOD
+
 
 A#2,F3 -> KeyPress:SHIFT
 A2,E3 -> KeyRelease:SHIFT

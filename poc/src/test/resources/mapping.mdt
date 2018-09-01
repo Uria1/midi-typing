@@ -1,3 +1,5 @@
+mode:default
+
 MidiNoteOn:C4 -> KeyStroke:C
 D4 -> KeyStroke:D
 MidiNoteOn:E4 -> E

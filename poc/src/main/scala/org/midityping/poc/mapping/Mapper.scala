@@ -1,6 +1,7 @@
 package org.midityping.poc.mapping
 
 import org.midityping.poc.actions.ActionDescriptor
+import org.midityping.poc.common.Mode
 import org.midityping.poc.events.{Strike, StrikeDescriptor}
 
 class Mapper {
@@ -10,8 +11,8 @@ class Mapper {
     mappings = mappings :+ mapping
   }
 
-  def getActionDescriptor(strike: Strike): Option[ActionDescriptor] = {
-    val strikeD = StrikeDescriptor(strike.events.map(_.asDescriptor))
+  def getActionDescriptor(strike: Strike, mode: String = Mode.default): Option[ActionDescriptor] = {
+    val strikeD = StrikeDescriptor(strike.events.map(_.asDescriptor), mode)
 
     mappings.collectFirst({
       case mapping if mapping.data.exists(_._1.asKey == strikeD.asKey) =>

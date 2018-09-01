@@ -3,6 +3,7 @@ scala_library(
     srcs = glob(["*.scala"]),
     visibility = ["//visibility:public"],
     deps = [
+        "//poc/src/main/scala/org/midityping/poc/common",
         "//poc/src/main/scala/org/midityping/poc/mapping",
         "//poc/src/main/scala/org/midityping/poc/actions",
         "//poc/src/main/scala/org/midityping/poc/events",

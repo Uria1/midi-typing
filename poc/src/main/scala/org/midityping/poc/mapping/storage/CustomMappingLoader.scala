@@ -26,18 +26,27 @@ object CustomMappingLoader {
   private def load(source: BufferedSource): Mapping = {
     val lines = for (line <- source.getLines()) yield line
 
-    val data = lines.filter(_.trim != "").toList.map(line => {
+    val lineList = lines.filter(_.trim != "").toList
+    val line1 = lineList.head
+
+    val mode = if (line1.startsWith("mode:")) {
+      line1.substring("mode:".length)
+    } else {
+      throw new Exception(s"First line in mapping file must indicate the mode. be i.e. 'mode:default'")
+    }
+
+    val data = lineList.tail.map(line => {
       val keyValue = line.split("\\-\\>")
       if (keyValue.size != 2) {
         throw new Exception(s"Invalid mapping line '$line'")
       }
-      (strikeDescriptor(keyValue(0).trim), actionDescriptor(keyValue(1).trim))
+      (strikeDescriptor(mode, keyValue(0).trim), actionDescriptor(keyValue(1).trim))
     })
 
     Mapping(data)
   }
 
-  private def strikeDescriptor(s: String): StrikeDescriptor = {
+  private def strikeDescriptor(mode: String, s: String): StrikeDescriptor = {
     StrikeDescriptor(s.split(',').map(event => {
       val tokens = event.split(':')
       if (tokens.size == 2) {
@@ -48,7 +57,7 @@ object CustomMappingLoader {
         throw new Exception(s"Invalid event descriptor '$s'")
       }
 
-    }))
+    }), mode)
   }
 
   private def actionDescriptor(s: String): ActionDescriptor = {

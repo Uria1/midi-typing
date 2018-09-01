@@ -1,1 +1,3 @@
+mode:default
+
 MidiNoteOn:C4,MidiNoteOn:F4 -> KeyStroke:X
