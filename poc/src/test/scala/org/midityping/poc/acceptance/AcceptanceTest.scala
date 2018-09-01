@@ -66,9 +66,10 @@ class AcceptanceTest extends SpecificationWithJUnit with TestSupport {
       eventually(actionExecutorStub.lastAction === Some(KeyStrokeAction("C")))
 
       triggerEvents(anEvent(timestamp = 100, note = Note.C2))
-      eventually(actionExecutorStub.lastAction === Some(ChangeModeAction("numbers", system.modeManager)))
+      eventually {
+        system.currentMode === "numbers"
+      }
 
-      system.currentMode === "numbers"
       triggerEvents(anEvent(timestamp = 200, note = Note.C4))
       eventually(actionExecutorStub.lastAction === Some(KeyStrokeAction("1")))
     }
