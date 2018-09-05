@@ -35,3 +35,58 @@ maven_jar(
     name = "ch_qos_logback__logback_core",
     artifact = "ch.qos.logback:logback-core:1.2.3",
 )
+
+maven_jar(
+    name = "jetty_server",
+    artifact = "org.eclipse.jetty:jetty-server:9.4.12.v20180830",
+)
+
+maven_jar(
+    name = "jetty_util",
+    artifact = "org.eclipse.jetty:jetty-util:9.4.12.v20180830",
+)
+
+maven_jar(
+    name = "jetty_http",
+    artifact = "org.eclipse.jetty:jetty-http:9.4.12.v20180830",
+)
+
+maven_jar(
+    name = "jetty_io",
+    artifact = "org.eclipse.jetty:jetty-io:9.4.12.v20180830",
+)
+
+maven_jar(
+    name = "jetty_security",
+    artifact = "org.eclipse.jetty:jetty-security:9.4.12.v20180830",
+)
+
+maven_jar(
+    name = "jetty_servlet",
+    artifact = "org.eclipse.jetty:jetty-servlet:9.4.12.v20180830",
+)
+
+maven_jar(
+    name = "jetty_websocket_api",
+    artifact = "org.eclipse.jetty.websocket:websocket-api:9.4.12.v20180830",
+)
+
+maven_jar(
+    name = "jetty_websocket_server",
+    artifact = "org.eclipse.jetty.websocket:websocket-server:9.4.12.v20180830",
+)
+
+maven_jar(
+    name = "jetty_websocket_servlet",
+    artifact = "org.eclipse.jetty.websocket:websocket-servlet:9.4.12.v20180830",
+)
+
+maven_jar(
+    name = "jetty_websocket_common",
+    artifact = "org.eclipse.jetty.websocket:websocket-common:9.4.12.v20180830",
+)
+
+maven_jar(
+    name = "javax_servlet_api",
+    artifact = "javax.servlet:javax.servlet-api:4.0.1",
+)

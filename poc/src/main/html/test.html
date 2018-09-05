@@ -1,0 +1,21 @@
+<html>
+<body>
+<script language="JavaScript">
+    var socket = new WebSocket("ws://localhost:8002/events");
+
+    socket.onopen = function (ev) {
+        console.log('onopen')
+        socket.send("hi")
+    }
+    socket.onerror = function (ev) {
+        console.log('onerror')
+        console.log(ev)
+    }
+    socket.onmessage = function (ev) {
+        console.log('onmessage')
+        console.log(ev)
+        return false;
+    }
+</script>
+</body>
+</html>
