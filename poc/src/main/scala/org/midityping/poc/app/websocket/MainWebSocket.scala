@@ -10,6 +10,13 @@ class MainWebSocket extends WebSocketAdapter {
     super.onWebSocketConnect(sess)
     sess.getRemote.sendString("you just connected!")
     logger.info("onWebSocketConnect")
+
+    while (true) {
+      Thread.sleep(2000)
+      if (sess.isOpen) {
+        sess.getRemote.sendString(System.currentTimeMillis().toString)
+      }
+    }
   }
 
   override def onWebSocketError(cause: Throwable): Unit = {

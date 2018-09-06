@@ -1,4 +1,19 @@
 <html>
+<style>
+    body {
+        font-size: 20pt;
+        font-family: Courier New;
+    }
+
+    div.label {
+        width: 10px;
+        font-weight: bold;
+    }
+
+    div.value {
+
+    }
+</style>
 <body>
 <script language="JavaScript">
     var socket = new WebSocket("ws://localhost:8002/events");
@@ -14,8 +29,13 @@
     socket.onmessage = function (ev) {
         console.log('onmessage')
         console.log(ev)
+        document.getElementById("mode").innerHTML = ev.data;
         return false;
     }
 </script>
+<div>
+    <div class="label">Mode:</div>
+    <div class="value" id="mode"></div>
+</div>
 </body>
 </html>
