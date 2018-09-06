@@ -10,7 +10,8 @@ class EventQueueTest extends SpecificationWithJUnit with TestSupport {
   trait Context extends Scope {
     val listener = new TestStrikeListener
     val strikeTimeWindow = randomInt(100, 500)
-    val q = new EventQueue(listener, strikeTimeWindow)
+    val q = new EventQueue(strikeTimeWindow)
+    q.subscribe(listener)
 
     def enqueueEventOnTime(event: Event, previousEvent: Option[Event] = None) = {
       previousEvent match {

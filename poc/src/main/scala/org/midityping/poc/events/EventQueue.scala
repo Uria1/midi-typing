@@ -6,12 +6,13 @@ import org.midityping.poc.logging.aLogger
 
 import scala.collection.JavaConverters._
 
-class EventQueue(listener: StrikeListener, strikeTimeWindow: Long) {
+class EventQueue(strikeTimeWindow: Long) {
   val logger = aLogger.forClass(getClass)
   val events = new ConcurrentLinkedQueue[Event]
   var windowStartTime = 0L
   val lock = new Object
   val eventQueueLock = new Object
+  var listeners = Seq.empty[StrikeListener]
 
   val strikeThread = new Thread(() => {
     while (true) {
@@ -24,7 +25,7 @@ class EventQueue(listener: StrikeListener, strikeTimeWindow: Long) {
       logger.trace("finished sleeping, start window sleep. size" + events.size())
       Thread.sleep(strikeTimeWindow)
       logger.trace("end window sleep, size" + events.size())
-      listener.strike(flushEventsAsStrike())
+      listeners.foreach(_.strike(flushEventsAsStrike()))
     }
   })
 
@@ -53,4 +54,7 @@ class EventQueue(listener: StrikeListener, strikeTimeWindow: Long) {
     }
   }
 
+  def subscribe(listener: StrikeListener): Unit = {
+    listeners = listeners :+ listener
+  }
 }

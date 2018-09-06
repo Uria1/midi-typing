@@ -12,7 +12,8 @@ class MidiTypingSystem(val actionExecutor: ActionExecutor) {
   val eventListener = new MidiEventListener
   val actionFactory = new DefaultActionFactory(modeManager)
   val strikeListener = new DefaultStrikeListener(mapper, actionFactory, actionExecutor, () => modeManager.currentMode)
-  val eventQueue = new EventQueue(strikeListener, 100)
+  val eventQueue = new EventQueue(100)
+  eventQueue.subscribe(strikeListener)
   val eventHandler = new DefaultEventHandler(eventQueue)
 
   def start: Unit = {
