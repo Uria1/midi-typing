@@ -10,15 +10,14 @@ import org.midityping.poc.system.MidiTypingSystem
 
 object MidiTypingApp {
   val logger = aLogger.forClass(getClass)
+  val system = new MidiTypingSystem(new DefaultActionExecutor)
 
   def main(args: Array[String]): Unit = {
-    val system = new MidiTypingSystem(new DefaultActionExecutor)
     loadMapping(system)
+    system.start
 
     val server = new MainServer
     server.start
-
-    system.start
 
     Thread.sleep(Long.MaxValue)
   }
