@@ -6,16 +6,22 @@
     }
 
     div.label {
-        width: 10px;
+        width: 200px;
         font-weight: bold;
+        float: left;
+        height: 40px;
     }
 
     div.value {
-
+        height: 40px;
     }
 </style>
 <body>
 <script language="JavaScript">
+    function showData(id, data) {
+        document.getElementById(id).innerHTML = data;
+    }
+
     var socket = new WebSocket("ws://localhost:8002/events");
 
     socket.onopen = function (ev) {
@@ -29,13 +35,15 @@
     socket.onmessage = function (ev) {
         console.log('onmessage')
         console.log(ev)
-        document.getElementById("mode").innerHTML = ev.data;
+        showData("mode", ev.data);
         return false;
     }
 </script>
 <div>
     <div class="label">Mode:</div>
     <div class="value" id="mode"></div>
+    <div class="label">Last Strike:</div>
+    <div class="value" id="lastStrike"></div>
 </div>
 </body>
 </html>
