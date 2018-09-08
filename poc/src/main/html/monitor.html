@@ -43,6 +43,9 @@
             case "NoteStrike":
                 showData("lastStrike", json.arg1);
                 break;
+            case "Command":
+                showData("command", json.arg1);
+                break;
         }
         return false;
     }
@@ -52,6 +55,8 @@
     <div class="value" id="mode"></div>
     <div class="label">Last Strike:</div>
     <div class="value" id="lastStrike"></div>
+    <div class="label">Last Command:</div>
+    <div class="value" id="command"></div>
 </div>
 </body>
 </html>

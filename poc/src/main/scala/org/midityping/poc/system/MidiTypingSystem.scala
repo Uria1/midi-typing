@@ -1,6 +1,6 @@
 package org.midityping.poc.system
 
-import org.midityping.poc.actions.{ActionExecutor, DefaultActionFactory, ModeManager}
+import org.midityping.poc.actions.{ActionDescriptor, ActionExecutor, DefaultActionFactory, ModeManager}
 import org.midityping.poc.events.{EventQueue, Strike}
 import org.midityping.poc.mapping.storage.CustomMappingLoader
 import org.midityping.poc.mapping.{Mapper, Mapping}
@@ -11,10 +11,6 @@ class MidiTypingSystem(val actionExecutor: ActionExecutor) {
   private var systemEventListeners = Seq.empty[SystemEventListener]
   private val modeManager = new ModeManager
 
-  modeManager.subscribe((mode: String) => {
-    fireSystemEvent(SystemEvent(SystemEventType.ModeChange, mode))
-  })
-
   val mapper = new Mapper
   val eventListener = new MidiEventListener
   val actionFactory = new DefaultActionFactory(modeManager)
@@ -22,17 +18,15 @@ class MidiTypingSystem(val actionExecutor: ActionExecutor) {
   val eventQueue = new EventQueue(100)
   eventQueue.subscribe(strikeListener)
 
-  eventQueue.subscribe((strike: Strike) => {
-    fireSystemEvent(SystemEvent(SystemEventType.NoteStrike, strike.events.map(_.note.fullName).mkString(",")))
-  })
+  attachSystemEventListeners
 
   val eventHandler = new DefaultEventHandler(eventQueue)
+
+  eventListener.subscribe(eventHandler)
 
   def start: Unit = {
     eventListener.start
   }
-
-  eventListener.subscribe(eventHandler)
 
   def loadMappingResource(resourcePath: String): Unit = {
     mapper.appendMapping(CustomMappingLoader.load(resourcePath))
@@ -50,5 +44,25 @@ class MidiTypingSystem(val actionExecutor: ActionExecutor) {
 
   def fireSystemEvent(event: SystemEvent): Unit = {
     systemEventListeners.foreach(_.onevent(event))
+  }
+
+  private def attachSystemEventListeners = {
+    modeManager.subscribe((mode: String) => {
+      fireSystemEvent(SystemEvent(SystemEventType.ModeChange, mode))
+    })
+
+    eventQueue.subscribe((strike: Strike) => {
+      fireSystemEvent(SystemEvent(SystemEventType.NoteStrike, strike.events.map(_.note.fullName).mkString(",")))
+    })
+
+    strikeListener.subscribe(new ActionListener {
+      override def unmappedStrike(strike: Strike, mode: String): Unit = {
+        fireSystemEvent(SystemEvent(SystemEventType.UnmappedStrike, strike.events.map(_.note.fullName).mkString(",")))
+      }
+
+      override def action(descriptor: ActionDescriptor): Unit = {
+        fireSystemEvent(SystemEvent(SystemEventType.Action, s"${descriptor.actionType}:${descriptor.arg}"))
+      }
+    })
   }
 }

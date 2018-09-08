@@ -19,6 +19,9 @@ class AcceptanceTest extends SpecificationWithJUnit with TestSupport {
     system.loadMappingResource("/acceptance/default.mdt")
     system.loadMappingResource("/acceptance/numbers.mdt")
 
+    val systemEventListener = new SystemEventListenerStub
+    system subscribe systemEventListener
+
     def triggerEvents(events: Event*) = {
       events.foldLeft(0L)((lastTimestamp, event) => {
         logger.info(s"sleeping ${event.timestamp - lastTimestamp}")
@@ -75,34 +78,33 @@ class AcceptanceTest extends SpecificationWithJUnit with TestSupport {
       eventually(actionExecutorStub.lastAction === Some(KeyStrokeAction("1")))
     }
 
-    "trigger mode change system event" in new Context {
-      var receivedEvent: Option[SystemEvent] = None
-      system subscribe {
-        case event@SystemEvent(SystemEventType.ModeChange, _) =>
-          receivedEvent = Some(event)
-        case _ =>
-      }
+    "trigger ModeChange system event" in new Context {
       triggerEvents(anEvent(timestamp = 0, note = Note.C2))
-      eventually(receivedEvent === Some(SystemEvent(SystemEventType.ModeChange, "numbers")))
+      eventually(systemEventListener.lastEvent(SystemEventType.ModeChange) ===
+        Some(SystemEvent(SystemEventType.ModeChange, "numbers")))
     }
 
     "trigger NoteStrike system event" in new Context {
-      var receivedEvent: Option[SystemEvent] = None
-      system.subscribe((event: SystemEvent) => {
-        receivedEvent = Some(event)
-      })
       triggerEvents(anEvent(timestamp = 0, note = Note.C4))
-      eventually(receivedEvent === Some(SystemEvent(SystemEventType.NoteStrike, "C4")))
+      eventually(systemEventListener.lastEvent === Some(SystemEvent(SystemEventType.NoteStrike, "C4")))
     }
 
     "trigger NoteStrike system event with two notes" in new Context {
-      var receivedEvent: Option[SystemEvent] = None
-      system.subscribe((event: SystemEvent) => {
-        receivedEvent = Some(event)
-      })
       triggerEvents(anEvent(timestamp = 0, note = Note.C4))
-      triggerEvents(anEvent(timestamp = 0, note = Note.F4))
-      eventually(receivedEvent === Some(SystemEvent(SystemEventType.NoteStrike, "C4,F4")))
+      triggerEvents(anEvent(timestamp = 30, note = Note.F4))
+      eventually(systemEventListener.lastEvent === Some(SystemEvent(SystemEventType.NoteStrike, "C4,F4")))
+    }
+
+    "trigger Action system event" in new Context {
+      triggerEvents(anEvent(timestamp = 0, note = Note.C4))
+      eventually(systemEventListener.lastEvent(SystemEventType.Action) ===
+        Some(SystemEvent(SystemEventType.Action, "KeyStroke:C")))
+    }
+
+    "trigger UnmappedStrike system event" in new Context {
+      triggerEvents(anEvent(timestamp = 0, note = Note.Fs4))
+      eventually(systemEventListener.lastEvent(SystemEventType.UnmappedStrike) ===
+        Some(SystemEvent(SystemEventType.UnmappedStrike, "F#4")))
     }
   }
 }
