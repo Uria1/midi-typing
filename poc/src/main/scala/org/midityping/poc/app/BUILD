@@ -1,21 +1,21 @@
 scala_binary(
     name = "app",
-    srcs = glob(["*.scala"]),
+    srcs = glob(["*.scala","websocket/*.scala"]),
     deps = [
         "//poc/src/main/scala/org/midityping/poc/actions",
         "//poc/src/main/scala/org/midityping/poc/mapping",
         "//poc/src/main/scala/org/midityping/poc/mapping/storage",
         "//poc/src/main/scala/org/midityping/poc/midi",
         "//poc/src/main/scala/org/midityping/poc/system",
+        "//poc/src/main/scala/org/midityping/poc/system/events:events",
         "//poc/src/main/scala/org/midityping/poc/common",
         "//poc/src/main/scala/org/midityping/poc/events",
         "//poc/src/main/scala/org/midityping/poc/logging",
-        "//poc/src/main/scala/org/midityping/poc/app/server",
-        "//poc/src/main/scala/org/midityping/poc/app/websocket",
         "//poc/src/main/resources:runtime-deps",
         "@org_slf4j__slf4j_api//jar",
         "@ch_qos_logback__logback_classic//jar",
         "@ch_qos_logback__logback_core//jar",
+        "@javax_servlet_api//jar",
         "@jetty_server//jar",
         "@jetty_util//jar",
         "@jetty_http//jar",
@@ -27,5 +27,5 @@ scala_binary(
         "@jetty_websocket_servlet//jar",
         "@jetty_websocket_common//jar",
     ],
-    main_class = "org.midityping.poc.app.MidiTypingApp"
+    main_class = "org.midityping.poc.app.MidiTypingApp",
 )

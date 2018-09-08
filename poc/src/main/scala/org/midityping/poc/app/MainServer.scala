@@ -1,8 +1,7 @@
-package org.midityping.poc.app.server
+package org.midityping.poc.app
 
 import org.eclipse.jetty.server.{Server, ServerConnector}
 import org.eclipse.jetty.servlet.{ServletContextHandler, ServletHolder}
-import org.midityping.poc.app.websocket.MainWebSocketServlet
 
 class MainServer {
   val server = new Server

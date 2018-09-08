@@ -3,7 +3,6 @@ package org.midityping.poc.app
 import java.io.File
 
 import org.midityping.poc.actions.DefaultActionExecutor
-import org.midityping.poc.app.server.MainServer
 import org.midityping.poc.logging.aLogger
 import org.midityping.poc.mapping.storage.FileMappingStorage
 import org.midityping.poc.system.MidiTypingSystem

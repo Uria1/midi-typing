@@ -1,9 +1,11 @@
-package org.midityping.poc.app.websocket
+package org.midityping.poc.app
 
 import org.eclipse.jetty.websocket.api.{Session, WebSocketAdapter}
 import org.midityping.poc.logging.aLogger
+import org.midityping.poc.system.MidiTypingSystem
+import org.midityping.poc.system.events.SystemEvent
 
-class MainWebSocket extends WebSocketAdapter {
+class MainWebSocket(system: MidiTypingSystem) extends WebSocketAdapter {
   private val logger = aLogger.forClass(getClass)
 
   override def onWebSocketConnect(sess: Session): Unit = {
@@ -11,12 +13,11 @@ class MainWebSocket extends WebSocketAdapter {
     sess.getRemote.sendString("you just connected!")
     logger.info("onWebSocketConnect")
 
-    while (true) {
-      Thread.sleep(2000)
+    system.subscribe((event: SystemEvent) => {
       if (sess.isOpen) {
-        sess.getRemote.sendString(System.currentTimeMillis().toString)
+        sess.getRemote.sendString(s"${event.eventType}: ${event.arg1}")
       }
-    }
+    })
   }
 
   override def onWebSocketError(cause: Throwable): Unit = {
