@@ -6,7 +6,7 @@
     }
 
     div.label {
-        width: 200px;
+        width: 240px;
         font-weight: bold;
         float: left;
         height: 40px;
@@ -22,6 +22,14 @@
         document.getElementById(id).innerHTML = data;
     }
 
+    function clearUnmapped() {
+        showData("unmapped", "");
+    }
+
+    function clearAction() {
+        showData("action", "");
+    }
+
     var socket = new WebSocket("ws://localhost:8002/events");
 
     socket.onopen = function (ev) {
@@ -33,21 +41,30 @@
         console.log(ev)
     }
     socket.onmessage = function (ev) {
-        console.log('onmessage');
-        console.log(ev)
-        var json = JSON.parse(ev.data);
-        switch (json.eventType) {
-            case "ModeChange":
-                showData("mode", json.arg1);
-                break;
-            case "NoteStrike":
-                showData("lastStrike", json.arg1);
-                break;
-            case "Command":
-                showData("command", json.arg1);
-                break;
+        try {
+            console.log('onmessage');
+            console.log(ev)
+            var json = JSON.parse(ev.data);
+            switch (json.eventType) {
+                case "ModeChange":
+                    showData("mode", json.arg1);
+                    clearUnmapped();
+                    break;
+                case "NoteStrike":
+                    showData("lastStrike", json.arg1);
+                    break;
+                case "Action":
+                    showData("action", json.arg1);
+                    clearUnmapped();
+                    break;
+                case "UnmappedStrike":
+                    showData("unmapped", json.arg1);
+                    clearAction();
+                    break;
+            }
+        } finally {
+            return false;
         }
-        return false;
     }
 </script>
 <div>
@@ -55,8 +72,10 @@
     <div class="value" id="mode"></div>
     <div class="label">Last Strike:</div>
     <div class="value" id="lastStrike"></div>
-    <div class="label">Last Command:</div>
-    <div class="value" id="command"></div>
+    <div class="label">Last Action:</div>
+    <div class="value" id="action"></div>
+    <div class="label">Last Unmapped:</div>
+    <div class="value" id="unmapped"></div>
 </div>
 </body>
 </html>

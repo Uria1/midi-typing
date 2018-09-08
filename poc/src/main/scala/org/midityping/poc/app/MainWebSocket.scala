@@ -3,7 +3,7 @@ package org.midityping.poc.app
 import org.eclipse.jetty.websocket.api.{Session, WebSocketAdapter}
 import org.midityping.poc.logging.aLogger
 import org.midityping.poc.system.MidiTypingSystem
-import org.midityping.poc.system.events.SystemEvent
+import org.midityping.poc.system.events.{SystemEvent, SystemEventType}
 
 class MainWebSocket(system: MidiTypingSystem) extends WebSocketAdapter {
   private val logger = aLogger.forClass(getClass)
@@ -12,12 +12,19 @@ class MainWebSocket(system: MidiTypingSystem) extends WebSocketAdapter {
     super.onWebSocketConnect(sess)
     logger.info("onWebSocketConnect")
 
+    //send current mode
+    sess.getRemote.sendString(toJson(SystemEvent(SystemEventType.ModeChange, system.currentMode)))
+
     system.subscribe((event: SystemEvent) => {
       if (sess.isOpen) {
-        //TODO: write proper json
-        sess.getRemote.sendString(s"""{"eventType":"${event.eventType}","arg1":"${event.arg1}"}""")
+        sess.getRemote.sendString(toJson(event))
       }
     })
+  }
+
+  def toJson(event: SystemEvent): String = {
+    //TODO: write proper json
+    s"""{"eventType":"${event.eventType}","arg1":"${event.arg1}"}"""
   }
 
   override def onWebSocketError(cause: Throwable): Unit = {
