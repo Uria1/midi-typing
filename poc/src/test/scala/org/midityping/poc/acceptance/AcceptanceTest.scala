@@ -77,12 +77,22 @@ class AcceptanceTest extends SpecificationWithJUnit with TestSupport {
 
     "trigger mode change system event" in new Context {
       var receivedEvent: Option[SystemEvent] = None
-      system.subscribe((event: SystemEvent) => {
-        receivedEvent = Some(event)
-      })
+      system subscribe {
+        case event@SystemEvent(SystemEventType.ModeChange, _) =>
+          receivedEvent = Some(event)
+        case _ =>
+      }
       triggerEvents(anEvent(timestamp = 0, note = Note.C2))
       eventually(receivedEvent === Some(SystemEvent(SystemEventType.ModeChange, "numbers")))
     }
 
+    "trigger NoteStrike system event" in new Context {
+      var receivedEvent: Option[SystemEvent] = None
+      system.subscribe((event: SystemEvent) => {
+        receivedEvent = Some(event)
+      })
+      triggerEvents(anEvent(timestamp = 0, note = Note.C4))
+      eventually(receivedEvent === Some(SystemEvent(SystemEventType.NoteStrike, "C4")))
+    }
   }
 }

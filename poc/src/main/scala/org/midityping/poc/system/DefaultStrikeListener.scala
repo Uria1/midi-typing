@@ -14,10 +14,10 @@ class DefaultStrikeListener(mapper: Mapper,
   override def strike(strike: Strike): Unit = {
     mapper.getActionDescriptor(strike, getMode()) match {
       case Some(descriptor) =>
-        println(s"mapped strike: $strike -> $descriptor")
         logger.info(s"mapped event: $strike -> $descriptor")
         actionExecutor.execute(actionFactory.createAction(descriptor))
-      case None => println(s"not mapped: $strike"); logger.info(s"not mapped: $strike")
+      case None =>
+        logger.info(s"not mapped: $strike")
     }
   }
 }

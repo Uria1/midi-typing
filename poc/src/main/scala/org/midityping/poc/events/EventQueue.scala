@@ -22,10 +22,11 @@ class EventQueue(strikeTimeWindow: Long) {
           lock.wait()
         }
       }
-      logger.trace("finished sleeping, start window sleep. size" + events.size())
+      logger.trace("finished sleeping, start window sleep. size: " + events.size())
       Thread.sleep(strikeTimeWindow)
-      logger.trace("end window sleep, size" + events.size())
-      listeners.foreach(_.strike(flushEventsAsStrike()))
+      logger.trace("end window sleep, size: " + events.size())
+      val strike = flushEventsAsStrike()
+      listeners.foreach(_.strike(strike))
     }
   })
 

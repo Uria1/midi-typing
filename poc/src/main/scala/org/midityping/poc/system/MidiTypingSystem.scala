@@ -1,7 +1,7 @@
 package org.midityping.poc.system
 
 import org.midityping.poc.actions.{ActionExecutor, DefaultActionFactory, ModeManager}
-import org.midityping.poc.events.EventQueue
+import org.midityping.poc.events.{EventQueue, Strike}
 import org.midityping.poc.mapping.storage.CustomMappingLoader
 import org.midityping.poc.mapping.{Mapper, Mapping}
 import org.midityping.poc.midi.MidiEventListener
@@ -21,6 +21,11 @@ class MidiTypingSystem(val actionExecutor: ActionExecutor) {
   val strikeListener = new DefaultStrikeListener(mapper, actionFactory, actionExecutor, () => modeManager.currentMode)
   val eventQueue = new EventQueue(100)
   eventQueue.subscribe(strikeListener)
+
+  eventQueue.subscribe((strike: Strike) => {
+    fireSystemEvent(SystemEvent(SystemEventType.NoteStrike, strike.events.map(_.note.fullName).mkString(",")))
+  })
+
   val eventHandler = new DefaultEventHandler(eventQueue)
 
   def start: Unit = {
