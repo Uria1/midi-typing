@@ -94,5 +94,15 @@ class AcceptanceTest extends SpecificationWithJUnit with TestSupport {
       triggerEvents(anEvent(timestamp = 0, note = Note.C4))
       eventually(receivedEvent === Some(SystemEvent(SystemEventType.NoteStrike, "C4")))
     }
+
+    "trigger NoteStrike system event with two notes" in new Context {
+      var receivedEvent: Option[SystemEvent] = None
+      system.subscribe((event: SystemEvent) => {
+        receivedEvent = Some(event)
+      })
+      triggerEvents(anEvent(timestamp = 0, note = Note.C4))
+      triggerEvents(anEvent(timestamp = 0, note = Note.F4))
+      eventually(receivedEvent === Some(SystemEvent(SystemEventType.NoteStrike, "C4,F4")))
+    }
   }
 }
