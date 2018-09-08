@@ -9,13 +9,15 @@ import scala.util.Random
 trait TestSupport {
   val random = Random
 
+  def randomStr = random.nextString(10)
+
   def randomInt(from: Int, to: Int) = random.nextInt(to - from) + from
 
   def randomLong = random.nextLong
 
   def randomVelocity = randomInt(20, 127)
 
-  def randomNote:Note = Note(randomInt(0,127))
+  def randomNote: Note = Note(randomInt(0, 127))
 
   def anEvent(note: Note = randomNote,
               eventType: EventType = EventType.MidiNoteOn,
