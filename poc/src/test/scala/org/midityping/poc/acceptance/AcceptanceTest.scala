@@ -5,6 +5,7 @@ import org.midityping.poc.common.{Mode, Note}
 import org.midityping.poc.events._
 import org.midityping.poc.logging.aLogger
 import org.midityping.poc.system.MidiTypingSystem
+import org.midityping.poc.system.events.{SystemEvent, SystemEventType}
 import org.specs2.matcher.Scope
 import org.specs2.mutable.SpecificationWithJUnit
 import poc.src.test.scala.org.midityping.poc.testsupport.TestSupport
@@ -73,5 +74,15 @@ class AcceptanceTest extends SpecificationWithJUnit with TestSupport {
       triggerEvents(anEvent(timestamp = 200, note = Note.C4))
       eventually(actionExecutorStub.lastAction === Some(KeyStrokeAction("1")))
     }
+
+    "trigger mode change system event" in new Context {
+      var receivedEvent: Option[SystemEvent] = None
+      system.subscribe((event: SystemEvent) => {
+        receivedEvent = Some(event)
+      })
+      triggerEvents(anEvent(timestamp = 0, note = Note.C2))
+      eventually(receivedEvent === Some(SystemEvent(SystemEventType.ModeChange, "numbers")))
+    }
+
   }
 }

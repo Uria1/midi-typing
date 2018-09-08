@@ -5,9 +5,16 @@ import org.midityping.poc.events.EventQueue
 import org.midityping.poc.mapping.storage.CustomMappingLoader
 import org.midityping.poc.mapping.{Mapper, Mapping}
 import org.midityping.poc.midi.MidiEventListener
+import org.midityping.poc.system.events.{SystemEvent, SystemEventListener, SystemEventType}
 
 class MidiTypingSystem(val actionExecutor: ActionExecutor) {
-  val modeManager = new ModeManager
+  private var systemEventListeners = Seq.empty[SystemEventListener]
+  private val modeManager = new ModeManager
+
+  modeManager.subscribe((mode: String) => {
+    fireSystemEvent(SystemEvent(SystemEventType.ModeChange, mode))
+  })
+
   val mapper = new Mapper
   val eventListener = new MidiEventListener
   val actionFactory = new DefaultActionFactory(modeManager)
@@ -31,4 +38,12 @@ class MidiTypingSystem(val actionExecutor: ActionExecutor) {
   }
 
   def currentMode = modeManager.currentMode
+
+  def subscribe(listener: SystemEventListener) = {
+    systemEventListeners = systemEventListeners :+ listener
+  }
+
+  def fireSystemEvent(event: SystemEvent): Unit = {
+    systemEventListeners.foreach(_.onevent(event))
+  }
 }
