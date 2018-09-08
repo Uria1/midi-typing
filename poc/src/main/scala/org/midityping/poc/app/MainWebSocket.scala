@@ -10,12 +10,12 @@ class MainWebSocket(system: MidiTypingSystem) extends WebSocketAdapter {
 
   override def onWebSocketConnect(sess: Session): Unit = {
     super.onWebSocketConnect(sess)
-    sess.getRemote.sendString("you just connected!")
     logger.info("onWebSocketConnect")
 
     system.subscribe((event: SystemEvent) => {
       if (sess.isOpen) {
-        sess.getRemote.sendString(s"${event.eventType}: ${event.arg1}")
+        //TODO: write proper json
+        sess.getRemote.sendString(s"""{"eventType":"${event.eventType}","arg1":"${event.arg1}"}""")
       }
     })
   }
@@ -28,7 +28,6 @@ class MainWebSocket(system: MidiTypingSystem) extends WebSocketAdapter {
   override def onWebSocketText(message: String): Unit = {
     super.onWebSocketText(message)
     logger.info("onWebSocketText")
-    getRemote.sendString(s"hi... you said $message")
   }
 
   override def onWebSocketClose(statusCode: Int, reason: String): Unit = {

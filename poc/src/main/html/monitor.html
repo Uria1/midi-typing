@@ -25,17 +25,25 @@
     var socket = new WebSocket("ws://localhost:8002/events");
 
     socket.onopen = function (ev) {
-        console.log('onopen')
-        socket.send("hi")
+        console.log('onopen');
+        //socket.send("hi")
     }
     socket.onerror = function (ev) {
-        console.log('onerror')
+        console.log('onerror');
         console.log(ev)
     }
     socket.onmessage = function (ev) {
-        console.log('onmessage')
+        console.log('onmessage');
         console.log(ev)
-        showData("mode", ev.data);
+        var json = JSON.parse(ev.data);
+        switch (json.eventType) {
+            case "ModeChange":
+                showData("mode", json.arg1);
+                break;
+            case "NoteStrike":
+                showData("lastStrike", json.arg1);
+                break;
+        }
         return false;
     }
 </script>
