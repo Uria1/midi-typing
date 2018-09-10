@@ -1,0 +1,4 @@
+mode:*
+E2 -> ChangeMode:default
+F2 -> ChangeMode:test
+G2 -> ChangeMode:numbers
