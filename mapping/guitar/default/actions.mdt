@@ -19,7 +19,3 @@ G3,D3 -> KeyRelease:ALT
 
 C#4,G4 -> KeyPress:META
 C4,F#4 -> KeyRelease:META
-
-E2 -> ChangeMode:default
-F2 -> ChangeMode:test
-G2 -> ChangeMode:numbers

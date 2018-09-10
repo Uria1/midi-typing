@@ -18,6 +18,7 @@ class AcceptanceTest extends SpecificationWithJUnit with TestSupport {
     val system = new MidiTypingSystem(actionExecutorStub)
     system.loadMappingResource("/acceptance/default.mdt")
     system.loadMappingResource("/acceptance/numbers.mdt")
+    system.loadMappingResource("/acceptance/actions.mdt")
 
     val systemEventListener = new SystemEventListenerStub
     system subscribe systemEventListener
@@ -70,9 +71,7 @@ class AcceptanceTest extends SpecificationWithJUnit with TestSupport {
       eventually(actionExecutorStub.lastAction === Some(KeyStrokeAction("C")))
 
       triggerEvents(anEvent(timestamp = 100, note = Note.C2))
-      eventually {
-        system.currentMode === "numbers"
-      }
+      eventually(system.currentMode === "numbers")
 
       triggerEvents(anEvent(timestamp = 200, note = Note.C4))
       eventually(actionExecutorStub.lastAction === Some(KeyStrokeAction("1")))
@@ -105,6 +104,13 @@ class AcceptanceTest extends SpecificationWithJUnit with TestSupport {
       triggerEvents(anEvent(timestamp = 0, note = Note.Fs4))
       eventually(systemEventListener.lastEvent(SystemEventType.UnmappedStrike) ===
         Some(SystemEvent(SystemEventType.UnmappedStrike, "F#4")))
+    }
+
+    "use mode change actions in '*' mode to change from any other mode" in new Context {
+      triggerEvents(anEvent(timestamp = 0, note = Note.C2))
+      eventually(system.currentMode === "numbers")
+      triggerEvents(anEvent(timestamp = 100, note = Note.D2))
+      eventually(system.currentMode === "default")
     }
   }
 }

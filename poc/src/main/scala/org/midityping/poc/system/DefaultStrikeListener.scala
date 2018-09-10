@@ -13,11 +13,15 @@ class DefaultStrikeListener(mapper: Mapper,
   var listeners = Seq.empty[ActionListener]
 
   override def strike(strike: Strike): Unit = {
-    mapper.getActionDescriptor(strike, getMode()) match {
+    val maybeDescriptor = mapper.getActionDescriptor(strike, getMode())
+      .orElse(mapper.getActionDescriptor(strike, "*"))
+
+    maybeDescriptor match {
       case Some(descriptor) =>
         logger.info(s"mapped event: $strike -> $descriptor")
         fireActionEvent(descriptor)
         actionExecutor.execute(actionFactory.createAction(descriptor))
+
       case None =>
         logger.info(s"not mapped: $strike")
         fireUnmappedStrikeEvent(strike, getMode())
