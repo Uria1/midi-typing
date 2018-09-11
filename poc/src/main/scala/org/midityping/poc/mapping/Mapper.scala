@@ -12,7 +12,7 @@ class Mapper {
   }
 
   def getActionDescriptor(strike: Strike, mode: String = Mode.default): Option[ActionDescriptor] = {
-    val strikeD = StrikeDescriptor(strike.events.map(_.asDescriptor), mode)
+    val strikeD = StrikeDescriptor(strike.events.sorted.map(_.asDescriptor), mode)
 
     mappings.collectFirst({
       case mapping if mapping.data.exists(_._1.asKey == strikeD.asKey) =>

@@ -48,6 +48,15 @@ class AcceptanceTest extends SpecificationWithJUnit with TestSupport {
       eventually(actionExecutorStub.lastAction === Some(KeyStrokeAction("F1")))
     }
 
+    "trigger a key stroke as a response for multiple events when notes are reversed" in new Context {
+      triggerEvents(
+        anEvent(timestamp = 0, note = Note.F4),
+        anEvent(timestamp = 10, note = Note.C4)
+      )
+
+      eventually(actionExecutorStub.lastAction === Some(KeyStrokeAction("F1")))
+    }
+
     "trigger a key stroke with modifier key" in new Context {
       triggerEvents(
         anEvent(timestamp = 0, note = Note.D4),
@@ -106,7 +115,7 @@ class AcceptanceTest extends SpecificationWithJUnit with TestSupport {
         Some(SystemEvent(SystemEventType.UnmappedStrike, "F#4")))
     }
 
-    "use mode change actions in '*' mode to change from any other mode" in new Context {
+    "use mode change actions in '*' mode to change the mode while in any other mode" in new Context {
       triggerEvents(anEvent(timestamp = 0, note = Note.C2))
       eventually(system.currentMode === "numbers")
       triggerEvents(anEvent(timestamp = 100, note = Note.D2))

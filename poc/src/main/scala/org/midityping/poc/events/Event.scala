@@ -7,9 +7,13 @@ case class Event(eventType: EventType,
                  timestamp: Long,
                  channel: Int,
                  velocity: Int,
-                 note: Note) {
+                 note: Note) extends Ordered[Event] {
 
   def asDescriptor: EventDescriptor = {
     EventDescriptor(eventType, note.fullName)
+  }
+
+  override def compare(that: Event): Int = {
+    this.note.number.compareTo(that.note.number)
   }
 }

@@ -52,6 +52,11 @@ class MapperTest extends SpecificationWithJUnit with TestSupport {
       mapper.getActionDescriptor(Strike(Seq(anEvent(Note.C4), anEvent(Note.F4)))) === Some(ActionD("X"))
     }
 
+    "map strike with two events when notes in strike are in reverse order" in {
+      val mapper = Mapper.withMapping(mapC4andF4)
+      mapper.getActionDescriptor(Strike(Seq(anEvent(Note.F4), anEvent(Note.C4)))) === Some(ActionD("X"))
+    }
+
     "map strike with two events using mapping file" in {
       val mapper = Mapper.withMapping(CustomMappingLoader.load("/map-c4-and-f4.mdt"))
       mapper.getActionDescriptor(Strike(Seq(anEvent(Note.C4), anEvent(Note.F4)))) === Some(ActionD("X"))
