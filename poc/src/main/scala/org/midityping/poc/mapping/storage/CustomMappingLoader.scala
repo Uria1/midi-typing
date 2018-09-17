@@ -48,7 +48,7 @@ object CustomMappingLoader {
 
   private def strikeDescriptor(mode: String, s: String): StrikeDescriptor = {
     StrikeDescriptor(s.split(',').map(event => {
-      val tokens = event.split(':')
+      val tokens = event.split(':').map(_.trim)
       if (tokens.size == 2) {
         EventDescriptor(tokens(0), tokens(1))
       } else if (tokens.size == 1) {
