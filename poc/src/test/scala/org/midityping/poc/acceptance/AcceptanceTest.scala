@@ -123,14 +123,8 @@ class AcceptanceTest extends SpecificationWithJUnit with TestSupport {
     }
 
     "trigger a key stroke with mapped SHIFT modifier" in new Context {
-      triggerEvents(
-        anEvent(timestamp = 0, note = Note.A4)
-      )
-
-      eventually {
-        actionExecutorStub.actions must haveSize(1)
-        actionExecutorStub.actions.head === KeyStrokeAction("4", Modifiers.Shift)
-      }
+      triggerEvents(anEvent(timestamp = 0, note = Note.A4))
+      eventually(actionExecutorStub.actions.head === KeyStrokeAction("4", Modifiers.Shift))
     }
   }
 }
