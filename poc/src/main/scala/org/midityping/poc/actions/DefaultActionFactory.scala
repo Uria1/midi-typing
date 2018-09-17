@@ -13,7 +13,7 @@ class DefaultActionFactory(modeManager: ModeManager) extends ActionFactory {
       case ActionType.KeyRelease =>
         KeyReleaseAction(descriptor.arg)
       case ActionType.KeyStroke =>
-        KeyStrokeAction(descriptor.arg)
+        KeyStrokeAction(descriptor.arg, descriptor.modifiers)
       case ActionType.ChangeMode =>
         ChangeModeAction(descriptor.arg, modeManager)
     }

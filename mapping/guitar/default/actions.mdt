@@ -3,10 +3,18 @@ mode:default
 D4 -> SPACE
 A#4 -> ENTER
 G#2 -> BACK_SPACE
-E4,A4 -> TAB
 C#5 -> COMMA
 D5 -> PERIOD
 
+D#5 -> LEFT
+E5 -> RIGHT
+F5 -> UP
+F#5 -> DOWN
+
+D3,G#3 -> HOME
+A2,D#3 -> END
+D#3,A3 -> PAGE_UP
+B2,E3  -> PAGE_DOWN
 
 A#2,F3 -> KeyPress:SHIFT
 A2,E3 -> KeyRelease:SHIFT
@@ -19,3 +27,14 @@ G3,D3 -> KeyRelease:ALT
 
 C#4,G4 -> KeyPress:META
 C4,F#4 -> KeyRelease:META
+
+D3,F#2 -> DELETE
+D#3,G3 -> BACK_SLASH
+G#3,C4 -> OPEN_BRACKET
+C#4,E4 -> CLOSE_BRACKET
+A3,C#4 -> %OPEN_BRACKET
+D4,F4  -> %CLOSE_BRACKET
+A#3,D4 -> %9
+D#4,F#4 -> %0
+F4,A4 -> ESCAPE
+G4,B4 -> TAB

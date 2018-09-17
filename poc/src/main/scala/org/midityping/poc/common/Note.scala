@@ -24,4 +24,5 @@ object Note {
   def Fs4 = Note(66)
   def G4 = Note(67)
   def Gs4 = Note(68)
+  def A4 = Note(69)
 }
