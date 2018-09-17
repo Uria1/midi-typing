@@ -14,7 +14,7 @@ F#5 -> DOWN
 D3,G#3 -> HOME
 A2,D#3 -> END
 D#3,A3 -> PAGE_UP
-B2,E3  -> PAGE_DOWN
+A#2,E3  -> PAGE_DOWN
 
 A#2,F3 -> KeyPress:SHIFT
 A2,E3 -> KeyRelease:SHIFT
