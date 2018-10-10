@@ -11,6 +11,11 @@ E5 -> RIGHT
 F5 -> UP
 F#5 -> DOWN
 
+F#3,C4 -> LEFT
+G#3,D4 -> RIGHT
+C4,F4 -> UP
+G3,C#4 -> DOWN
+
 D3,G#3 -> HOME
 A2,D#3 -> END
 D#3,A3 -> PAGE_UP
@@ -22,14 +27,14 @@ A2,E3 -> KeyRelease:SHIFT
 D#3,A#3 -> KeyPress:CONTROL
 D3,A3 -> KeyRelease:CONTROL
 
-G#3,D#3 -> KeyPress:ALT
-G3,D3 -> KeyRelease:ALT
+G#3,D#4 -> KeyPress:ALT
+G3,D4 -> KeyRelease:ALT
 
 C#4,G4 -> KeyPress:META
 C4,F#4 -> KeyRelease:META
 
 D3,F#2 -> DELETE
-D#3,G3 -> BACK_SLASH
+E3,G#3 -> BACK_SLASH
 G#3,C4 -> OPEN_BRACKET
 C#4,E4 -> CLOSE_BRACKET
 A3,C#4 -> %OPEN_BRACKET
@@ -38,3 +43,13 @@ A#3,D4 -> %9
 D#4,F#4 -> %0
 F4,A4 -> ESCAPE
 G4,B4 -> TAB
+
+D#3,A#2 -> PERIOD
+E3,B2 -> EQUALS
+F3,C3 -> PLUS
+A#3,F3 -> MINUS
+D#4,A#3 -> MULTIPLY
+D#4,G4 -> DIVIDE
+F#4,B4 -> QUOTEDBL
+G4,C5 -> QUOTE
+E4,A4 -> BACK_QUOTE

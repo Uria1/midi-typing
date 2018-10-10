@@ -2,13 +2,13 @@ mode:default
 
 E3 ,G3  -> F1
 F3 ,G#3 -> F2
-F#2,A3  -> F3
+F#3,A3  -> F3
 A3 ,C4  -> F4
 A#3,C#4 -> F5
 B3 ,D4  -> F6
 D4, E4  -> F7
 D#4,F4  -> F8
-E4 ,F#4 -> F9
+E4 ,F4  -> F9
 F#4,A4  -> F10
-G#4,B4  -> F11
-A4 ,C5  -> F12
+G4,A#4  -> F11
+G#4,B4  -> F12
